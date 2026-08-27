@@ -4,6 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import { welcomeLinesLG, welcomeLinesSM } from "../../constants/welcome";
 import w1 from "../../assets/welcome-1.jpg";
 import w2 from "../../assets/welcome-2.jpg";
+import section2Bg from "../../assets/section_2.png";
 
 const Welcome = () => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -44,15 +45,23 @@ const Welcome = () => {
     });
 
     return (
-        <section className="welcome-section w-full min-h-screen text-[#f4efe7] px-6 sm:px-10 md:px-14 lg:px-20 pt-20 md:pt-28 pb-24 relative overflow-hidden bg-[#0c0915]">
-            {/* Subtle Ambient Background Glows */}
-            <div className="absolute top-1/4 -left-40 w-96 h-96 bg-purple-900/15 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-10 -right-40 w-96 h-96 bg-indigo-900/15 rounded-full blur-3xl pointer-events-none" />
+        <section className="welcome-section w-full min-h-screen text-[#f4efe7] px-6 sm:px-10 md:px-14 lg:px-20 pt-24 md:pt-32 pb-28 relative overflow-hidden bg-[#07050e]">
+            {/* Cinematic Background Layer */}
+            <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90 pointer-events-none z-0"
+                style={{ backgroundImage: `url(${section2Bg})` }}
+            />
+
+            {/* Seamless Top Blend with Hero Section */}
+            <div className="absolute inset-x-0 top-0 h-40 md:h-56 bg-gradient-to-b from-[#0a0714] via-[#0a0714]/70 to-transparent pointer-events-none z-1" />
+
+            {/* Seamless Bottom Blend with Next Section */}
+            <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-[#181717] via-[#181717]/70 to-transparent pointer-events-none z-1" />
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Eyebrow with Purple Accent Line */}
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
-                    <span className="w-8 md:w-10 h-[2px] bg-[#a855f7] inline-block rounded-full"></span>
+                    <span className="w-8 md:w-10 h-[2px] bg-[#a855f7] inline-block rounded-full shadow-[0_0_8px_#a855f7]"></span>
                     <p className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#a79bbd] uppercase">
                         THE ODYSSEY
                     </p>
