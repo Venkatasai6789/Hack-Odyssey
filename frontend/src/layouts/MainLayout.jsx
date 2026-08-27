@@ -30,7 +30,6 @@ const MainLayout = () => {
         <>
             <PreloaderII />
             <Logo />
-            <ReserveBtn />
             <Navbar />
             <div id="smooth-wrapper">
                 <div id="smooth-content">
