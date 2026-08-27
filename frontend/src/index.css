@@ -134,11 +134,11 @@ body {
 /* --------------- Welcome Section Styles -------------- */
 
 .text-darkBrown {
-	color: #2A2725;
+	color: #2b243b;
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
-	line-height: 1.05;
+	line-height: 1.08;
 }
 
 .clip-text-welcome {
@@ -146,7 +146,7 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	color: #f4efe7;
+	color: #ffffff;
 	clip-path: inset(0 0 100% 0);
 	white-space: nowrap;
 	transition: none;

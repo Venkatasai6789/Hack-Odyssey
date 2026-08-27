@@ -14,7 +14,7 @@ const Welcome = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".welcome-section",
-                start: "top 70%",
+                start: "top 75%",
                 end: "bottom 80%",
                 scrub: 1,
             },
@@ -44,61 +44,71 @@ const Welcome = () => {
     });
 
     return (
-        <div className="welcome-section w-full min-h-[110vh] text-[#2A2725] md:px-10 px-6 pt-10 pb-20">
-            {/* Eyebrow Label */}
-            <div className="mb-4 md:mb-6">
-                <p className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#b1a696] uppercase">
-                    THE ODYSSEY
-                </p>
-            </div>
+        <section className="welcome-section w-full min-h-screen text-[#f4efe7] px-6 sm:px-10 md:px-14 lg:px-20 pt-20 md:pt-28 pb-24 relative overflow-hidden bg-[#0c0915]">
+            {/* Subtle Ambient Background Glows */}
+            <div className="absolute top-1/4 -left-40 w-96 h-96 bg-purple-900/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-10 -right-40 w-96 h-96 bg-indigo-900/15 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Editorial Statement with Interactive Scroll Reveal */}
-            <div className="flex flex-col gap-2 tracking-[-4] leading-2">
-                <div className="w-full md:w-[92%] lg:w-[86%] md:text-[60px] lg:text-[64px] text-[32px] welcome-line">
-                    <div className="w-full welcome-text flex flex-col justify-center items-start">
-                        {welcomeLines.map((text, index) => (
-                            <span key={index} className="relative block text-darkBrown md:tracking-[-0.010em] tracking-[0.015em]">
-                                {text}
-                                <span className="clip-text-welcome md:tracking-[-0.010em] tracking-[0.015em]">{text}</span>
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Second Part: Two Organic Visuals + Statement */}
-            <div className="flex md:flex-row flex-col justify-between items-center md:p-4 md:mt-24 mt-14 gap-8">
-                {/* Organic Hackathon Visuals */}
-                <div className="flex flex-row justify-center items-center gap-3 welcome-image-card">
-                    <div className="overflow-hidden md:rounded-[8rem] rounded-[9rem] md:w-60 w-44 aspect-[4/3] shadow-lg border border-white/5">
-                        <img
-                            src={w1}
-                            alt="Students collaborating at Hack Odyssey"
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                    </div>
-                    <div className="overflow-hidden md:rounded-[8rem] rounded-[9rem] md:w-60 w-44 aspect-[4/3] shadow-lg border border-white/5">
-                        <img
-                            src={w2}
-                            alt="Hackathon coding environment"
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                    </div>
-                </div>
-
-                {/* Right Statement Block */}
-                <div className="md:w-1/2 w-full md:mt-0 mt-8 welcome-statement flex flex-col justify-center">
-                    <p className="md:text-[2rem] text-[1.35rem] text-[#b1a696] md:leading-[1.25] md:pr-16 font-normal leading-[30px] tracking-[-0.2px]">
-                        <span className="text-[#f4efe7] font-medium">One room.</span><br />
-                        <span className="text-[#f4efe7] font-medium">Hundreds of ideas.</span><br />
-                        <span className="text-[#b1a696]">Twenty-four hours to build them.</span>
+            <div className="max-w-7xl mx-auto relative z-10">
+                {/* Eyebrow with Purple Accent Line */}
+                <div className="flex items-center gap-3 mb-6 md:mb-8">
+                    <span className="w-8 md:w-10 h-[2px] bg-[#a855f7] inline-block rounded-full"></span>
+                    <p className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#a79bbd] uppercase">
+                        THE ODYSSEY
                     </p>
-                    <span className="text-xs md:text-sm tracking-[0.22em] font-semibold text-[#8e8579] uppercase mt-6 block">
-                        KARE &middot; ACM STUDENT CHAPTER
-                    </span>
+                </div>
+
+                {/* Editorial Statement with Progressive Scroll Reveal */}
+                <div className="flex flex-col gap-2 mb-16 md:mb-24">
+                    <div className="w-full md:w-[94%] lg:w-[88%] text-[28px] sm:text-[36px] md:text-[54px] lg:text-[62px] leading-[1.12] md:leading-[1.08] font-normal tracking-[-0.015em]">
+                        <div className="w-full welcome-text flex flex-col justify-center items-start">
+                            {welcomeLines.map((text, index) => (
+                                <span key={index} className="relative block text-darkBrown">
+                                    {text}
+                                    <span className="clip-text-welcome">{text}</span>
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Second Part: Two Organic Visuals + Refined Statement */}
+                <div className="flex md:flex-row flex-col justify-between items-start md:items-center gap-10 md:gap-14 pt-4">
+                    {/* Left: Organic Hackathon Visuals */}
+                    <div className="flex flex-row justify-start items-center gap-3 sm:gap-4 welcome-image-card">
+                        <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] md:rounded-[4rem] w-40 sm:w-52 md:w-60 lg:w-68 aspect-[15/11] border border-purple-500/25 shadow-[0_0_25px_rgba(168,85,247,0.15)] group">
+                            <img
+                                src={w1}
+                                alt="Hackathon team collaborating"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                        </div>
+                        <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] md:rounded-[4rem] w-40 sm:w-52 md:w-60 lg:w-68 aspect-[15/11] border border-purple-500/25 shadow-[0_0_25px_rgba(168,85,247,0.15)] group">
+                            <img
+                                src={w2}
+                                alt="Developer coding at hackathon"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Right: Refined Statement Block Matching Reference */}
+                    <div className="md:w-1/2 w-full welcome-statement flex flex-col justify-center">
+                        <p className="text-xl sm:text-2xl md:text-[2rem] lg:text-[2.2rem] text-[#d1ccd8] leading-[1.28] md:leading-[1.24] font-normal tracking-[-0.2px]">
+                            <span>One challenge.</span><br />
+                            <span>One team.</span><br />
+                            <span><strong className="font-bold text-white">One</strong> idea at a time.</span>
+                        </p>
+                        <div className="flex items-center gap-2 mt-6 md:mt-8">
+                            <span className="w-4 h-[1.5px] bg-[#a855f7] inline-block"></span>
+                            <span className="text-[10px] sm:text-xs md:text-[13px] tracking-[0.22em] font-semibold text-[#8b82a0] uppercase">
+                                KARE &middot; ACM STUDENT CHAPTER
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
