@@ -1,25 +1,17 @@
 export const welcomeLinesLG = [
-    "Welcome to a world of wild California",
-    "desert with Capsules®, where you will",
-    "discover exquisite nature observing it",
-    "from capsule houses, nestled in the",
-    "one of the most breathtaking",
-    "destination on the United States.",
+    "A 24-hour journey where students",
+    "turn ideas into working solutions,",
+    "collaborate beyond boundaries, and",
+    "build what comes next.",
 ];
 export const welcomeLinesSM = [
-    "Welcome to a world",
-    "of wild California",
-    "desert with ",
-    "Capsules®, where ",
-    "you will discover ",
-    "exquisite nature",
-    "observing it from",
-    "capsule houses,",
-    "nestled in the one",
-    "of the most",
-    "breathtaking",
-    "destination on the",
-    "United States.",
+    "A 24-hour journey",
+    "where students turn",
+    "ideas into working",
+    "solutions, collaborate",
+    "beyond boundaries,",
+    "and build what",
+    "comes next.",
 ];
 
 export const chooseLinesLG =[
