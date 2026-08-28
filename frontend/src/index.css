@@ -1,6 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
+@font-face {
+	font-family: 'plain light';
+	src: url("/fonts/plain-light-webfont.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'plain regular';
+	src: url("/fonts/plain-regular-webfont.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'silk serif';
+	src: url("/fonts/silkserif-lightitalic-webfont.woff") format("woff");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'silk serif';
+	src: url("/fonts/silkserif-regularitalic-webfont.woff") format("woff");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+.font-plain-light {
+	font-family: 'plain light', sans-serif;
+}
+
+.font-plain-reg {
+	font-family: 'plain regular', sans-serif;
+}
+
+.font-silk-serif {
+	font-family: 'silk serif', Georgia, serif;
+	font-style: italic;
+}
+
 :root {
 	--base-100: #181717;
 	--base-200: #292725;
@@ -134,11 +179,11 @@ body {
 /* --------------- Welcome Section Styles -------------- */
 
 .text-darkBrown {
-	color: #2b243b;
+	color: #231e2e;
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
-	line-height: 1.08;
+	line-height: 1.2;
 }
 
 .clip-text-welcome {
@@ -329,3 +374,346 @@ body {
 		width: 75%;
 	}
 }
+
+/* ----------------- Obys Custom Cursor Styles ----------------- */
+#crsr {
+	height: 3.5vw;
+	width: 3.5vw;
+	min-height: 40px;
+	min-width: 40px;
+	border-radius: 50%;
+	border: 1.3px solid #ffffffbc;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99999999;
+	mix-blend-mode: difference;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+/* ----------------- Obys Page3 Section Styles ----------------- */
+#page3 {
+	min-height: 100vh;
+	width: 100%;
+	background: #030206;
+	padding: 8vw 0vw;
+	position: relative;
+	overflow: hidden;
+}
+
+#page3 > h1 {
+	width: 70%;
+	margin-left: 30%;
+	position: relative;
+	z-index: 10;
+	text-transform: uppercase;
+	font-size: 7.2vw;
+	font-weight: 600;
+	line-height: 7.3vw;
+	font-family: 'plain regular', sans-serif;
+	color: #ffffff;
+}
+
+#page3-underline {
+	height: 2px;
+	width: 70%;
+	margin: 4vw 2vw;
+	margin-left: 30%;
+	background: #ffffff;
+	position: relative;
+	z-index: 10;
+}
+
+#img-div-container {
+	position: relative;
+	padding: 2vw 5vw;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 5vw;
+}
+
+.card {
+	width: fit-content;
+	flex-shrink: 0;
+}
+
+.card-heading-container {
+	overflow: hidden;
+}
+
+.card-heading-container > h1 {
+	font-size: 2vw;
+	width: fit-content;
+	margin: 0 0 0.5vw 0;
+	text-transform: uppercase;
+	font-family: 'plain regular', sans-serif;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.card .img-div {
+	height: 33vw;
+	width: 24vw;
+	overflow: hidden;
+	flex-shrink: 0;
+	position: relative;
+	background-color: #161616;
+}
+
+.card .card-details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 23px;
+	padding-top: 0.6vw;
+	padding-bottom: 0.6vw;
+}
+
+.card .card-details h6 {
+	font-size: 1vw;
+	margin: 0.4vw 0;
+	font-weight: 400;
+	color: #e0e0e0;
+	line-height: 1.5vw;
+	font-family: 'plain light', sans-serif;
+}
+
+#card-underline,
+.card-underline {
+	width: 100%;
+	background: rgba(255, 255, 255, 0.36);
+	height: 2px;
+}
+
+#img-div-container .card:nth-child(2) {
+	margin-top: 10vw;
+}
+#img-div-container .card:nth-child(2) .img-div {
+	height: 40vw;
+	width: 30vw;
+}
+
+#img-div-container .card:nth-child(5) {
+	margin-top: 15vw;
+}
+
+#img-div-container .card:nth-child(6) .img-div {
+	height: 40vw;
+	width: 30vw;
+}
+
+#img-div-container .card:nth-child(7) .img-div {
+	height: 40vw;
+	width: 30vw;
+}
+
+#img-div-container .card:nth-child(9) {
+	margin-top: 15vw;
+}
+
+#img-div-container .card:nth-child(10) .img-div {
+	height: 40vw;
+	width: 30vw;
+}
+
+/* Circles */
+.page3-circle1 {
+	width: 24vw;
+	height: 24vw;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.45);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 25vw;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.page3-circle1 svg {
+	width: 40%;
+	height: 40%;
+	object-fit: contain;
+}
+
+.circle-text1 {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	color: black;
+	height: 100%;
+	width: 100%;
+	padding: 2vw;
+	text-align: center;
+	font-size: 1.1vw;
+	font-weight: 600;
+	font-family: 'plain regular', sans-serif;
+	transform: scale(0);
+	transition: all ease 0.5s;
+	transition-delay: 0.1s;
+	border-radius: 50%;
+}
+
+.page3-circle1:hover .circle-text1 {
+	transform: scale(1);
+}
+
+.page3-circle2 {
+	width: 24vw;
+	height: 24vw;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.45);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.page3-circle2 svg {
+	width: 40%;
+	height: 40%;
+	object-fit: contain;
+	transform: rotate(-45deg);
+}
+
+.circle-text2 {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	color: black;
+	height: 100%;
+	width: 100%;
+	padding: 2vw;
+	text-align: center;
+	font-size: 1.1vw;
+	font-weight: 600;
+	font-family: 'plain regular', sans-serif;
+	transform: scale(0);
+	transition: all ease 0.5s;
+	transition-delay: 0.1s;
+	border-radius: 50%;
+}
+
+.page3-circle2:hover .circle-text2 {
+	transform: scale(1);
+}
+
+.page3-circle3 {
+	width: 24vw;
+	height: 24vw;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.45);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20vw;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.page3-circle3 svg {
+	width: 40%;
+	height: 40%;
+	object-fit: contain;
+	transform: rotate(-90deg);
+}
+
+.circle-text3 {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	color: black;
+	height: 100%;
+	width: 100%;
+	padding: 2vw;
+	text-align: center;
+	font-size: 1.1vw;
+	font-weight: 600;
+	font-family: 'plain regular', sans-serif;
+	transform: scale(0);
+	transition: all ease 0.5s;
+	transition-delay: 0.1s;
+	border-radius: 50%;
+}
+
+.page3-circle3:hover .circle-text3 {
+	transform: scale(1);
+}
+
+.page4-circle4 {
+	width: 20vw;
+	height: 20vw;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #FFA63D;
+	color: white;
+	font-size: 1.6vw;
+	font-family: 'plain regular', sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-top: 8vw;
+	cursor: pointer;
+	text-align: center;
+	padding: 2vw;
+}
+
+/* Mobile Responsiveness for Obys Page3 */
+@media (max-width: 768px) {
+	#page3 > h1 {
+		width: 88%;
+		margin-left: 12%;
+		font-size: 11vw;
+		line-height: 11vw;
+	}
+	#page3-underline {
+		width: 88%;
+		margin-left: 12%;
+	}
+	#img-div-container {
+		flex-direction: column;
+		align-items: center;
+		padding: 4vw;
+		gap: 12vw;
+	}
+	.card,
+	.card .img-div,
+	#img-div-container .card:nth-child(2) .img-div,
+	#img-div-container .card:nth-child(6) .img-div,
+	#img-div-container .card:nth-child(7) .img-div,
+	#img-div-container .card:nth-child(10) .img-div {
+		width: 85vw !important;
+		height: 105vw !important;
+		margin-top: 0 !important;
+	}
+	.card-heading-container > h1 {
+		font-size: 6vw;
+	}
+	.card .card-details h6 {
+		font-size: 3.5vw;
+		line-height: 5vw;
+	}
+	.page3-circle1, .page3-circle2, .page3-circle3, .page4-circle4 {
+		width: 70vw !important;
+		height: 70vw !important;
+		margin-top: 0 !important;
+	}
+	.circle-text1, .circle-text2, .circle-text3, .page4-circle4 {
+		font-size: 4vw !important;
+	}
+}
+

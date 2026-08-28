@@ -1,0 +1,303 @@
+/* ----------------- Prize Pool Section Styles ----------------- */
+
+.prizepool-section {
+    position: relative;
+    background-color: #030206;
+    color: #f4efe7;
+    overflow: hidden;
+    padding: 7vw 0;
+}
+
+.prizepool-title {
+    width: 70%;
+    margin-left: 30%;
+    position: relative;
+    z-index: 10;
+    text-transform: uppercase;
+    font-size: 7.2vw;
+    font-weight: 600;
+    line-height: 7.3vw;
+    font-family: 'plain regular', sans-serif;
+    color: #ffffff;
+}
+
+#prizepool-underline {
+    height: 2px;
+    width: 70%;
+    margin: 3.5vw 2vw 4vw 30%;
+    background: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+
+/* Kinetic Layered Typography Container */
+.kinetic-text-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 3vw 0;
+}
+
+.ghost-text-track {
+    font-family: 'plain regular', sans-serif;
+    font-size: 11vw;
+    font-weight: 800;
+    line-height: 0.9;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.07);
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+    will-change: transform;
+}
+
+/* Center Highlight Badge (Inspired by reference UI 'FUEL UP') */
+.angled-badge-container {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -4vw 0 4vw 0;
+}
+
+.angled-badge {
+    background: linear-gradient(135deg, #ffa63d 0%, #ff7b00 100%);
+    color: #0d0905;
+    padding: 1.2vw 3.5vw;
+    border-radius: 1.2rem;
+    transform: rotate(-3.5deg);
+    box-shadow: 0 15px 35px rgba(255, 123, 0, 0.35), 0 0 50px rgba(255, 166, 61, 0.2);
+    cursor: default;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    will-change: transform;
+}
+
+.angled-badge:hover {
+    transform: rotate(0deg) scale(1.06);
+    box-shadow: 0 20px 45px rgba(255, 123, 0, 0.5), 0 0 70px rgba(255, 166, 61, 0.4);
+}
+
+.angled-badge-title {
+    font-family: 'plain regular', sans-serif;
+    font-size: 3.2vw;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.angled-badge-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95vw;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    text-align: center;
+    margin-top: 0.3vw;
+}
+
+/* 3D Prize Cards Grid */
+.prize-cards-grid {
+    position: relative;
+    z-index: 15;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    max-width: 82rem;
+    margin: 0 auto;
+    padding: 0 3vw;
+    perspective: 1200px;
+}
+
+/* Individual Prize Card */
+.prize-card {
+    position: relative;
+    background: radial-gradient(
+        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.08),
+        rgba(18, 15, 28, 0.85) 40%,
+        rgba(8, 6, 14, 0.95) 80%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2rem;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 540px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform-style: preserve-3d;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+/* 1st Prize Grand Card Elevation */
+.prize-card-first {
+    background: radial-gradient(
+        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(251, 191, 36, 0.15),
+        rgba(28, 22, 16, 0.9) 40%,
+        rgba(10, 8, 5, 0.98) 80%
+    );
+    border: 1.5px solid rgba(251, 191, 36, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px rgba(251, 191, 36, 0.15);
+    transform: translateY(-1.5rem);
+}
+
+.prize-card-first:hover {
+    border-color: rgba(251, 191, 36, 0.8);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 60px rgba(251, 191, 36, 0.35);
+}
+
+/* 2nd Prize Silver Card */
+.prize-card-second {
+    border: 1px solid rgba(203, 213, 225, 0.25);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(168, 85, 247, 0.1);
+}
+
+.prize-card-second:hover {
+    border-color: rgba(203, 213, 225, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 45px rgba(203, 213, 225, 0.25);
+}
+
+/* 3rd Prize Bronze Card */
+.prize-card-third {
+    border: 1px solid rgba(249, 115, 22, 0.25);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(249, 115, 22, 0.1);
+}
+
+.prize-card-third:hover {
+    border-color: rgba(249, 115, 22, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 45px rgba(249, 115, 22, 0.25);
+}
+
+/* Card Holographic Spotlight Overlay */
+.card-spotlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+        400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.15),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.prize-card:hover .card-spotlight {
+    opacity: 1;
+}
+
+/* Amount Display Typography */
+.prize-amount {
+    font-family: 'plain regular', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: baseline;
+}
+
+/* Shimmer Gold Text */
+.gold-shimmer {
+    background: linear-gradient(135deg, #ffffff 0%, #fde68a 30%, #fbbf24 60%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer Silver Text */
+.silver-shimmer {
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer Bronze Text */
+.bronze-shimmer {
+    background: linear-gradient(135deg, #ffffff 0%, #fdba74 40%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Extra Categories Pill Strip */
+.bonus-tracks-container {
+    position: relative;
+    z-index: 15;
+    max-width: 82rem;
+    margin: 5rem auto 0 auto;
+    padding: 0 3vw;
+}
+
+.bonus-pill {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 1.5rem;
+    padding: 1.5rem 1.8rem;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bonus-pill:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(168, 85, 247, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 1024px) {
+    .prize-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .prize-card {
+        min-height: auto;
+    }
+
+    .prize-card-first {
+        transform: translateY(0);
+        order: -1;
+    }
+
+    .ghost-text-track {
+        font-size: 16vw;
+    }
+
+    .angled-badge {
+        padding: 1rem 2rem;
+        transform: rotate(-2deg);
+    }
+
+    .angled-badge-title {
+        font-size: 1.8rem;
+    }
+
+    .angled-badge-sub {
+        font-size: 0.75rem;
+    }
+
+    .prizepool-title {
+        width: 88%;
+        margin-left: 12%;
+        font-size: 11vw;
+        line-height: 11vw;
+    }
+
+    #prizepool-underline {
+        width: 88%;
+        margin-left: 12%;
+    }
+}

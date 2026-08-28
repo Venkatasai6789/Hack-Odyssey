@@ -28,9 +28,9 @@ const Welcome = () => {
         });
 
         tl.from(".welcome-image-card", {
-            y: 30,
+            y: 25,
             opacity: 0.8,
-            scale: 0.97,
+            scale: 0.98,
             stagger: 0.15,
             ease: "power2.out",
             duration: 0.8,
@@ -45,31 +45,31 @@ const Welcome = () => {
     });
 
     return (
-        <section className="welcome-section w-full min-h-screen text-[#f4efe7] px-6 sm:px-10 md:px-14 lg:px-20 pt-24 md:pt-32 pb-28 relative overflow-hidden bg-[#07050e]">
-            {/* Cinematic Background Layer */}
+        <section className="welcome-section w-full min-h-screen text-[#f4efe7] px-6 sm:px-12 md:px-16 lg:px-24 pt-24 md:pt-32 pb-24 relative overflow-hidden bg-[#030206]">
+            {/* Cinematic Background Layer - shifted lower so top remains deep cinematic black */}
             <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90 pointer-events-none z-0"
+                className="absolute inset-x-0 bottom-0 top-24 md:top-36 bg-cover bg-bottom bg-no-repeat opacity-85 pointer-events-none z-0 scale-105"
                 style={{ backgroundImage: `url(${section2Bg})` }}
             />
 
-            {/* Seamless Top Blend with Hero Section */}
-            <div className="absolute inset-x-0 top-0 h-40 md:h-56 bg-gradient-to-b from-[#0a0714] via-[#0a0714]/70 to-transparent pointer-events-none z-1" />
+            {/* Deep Cinematic Black Top Fade */}
+            <div className="absolute inset-x-0 top-0 h-48 md:h-72 bg-gradient-to-b from-[#030206] via-[#030206]/95 to-transparent pointer-events-none z-1" />
 
             {/* Seamless Bottom Blend with Next Section */}
-            <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-[#181717] via-[#181717]/70 to-transparent pointer-events-none z-1" />
+            <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-[#030206] via-[#030206]/70 to-transparent pointer-events-none z-1" />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10">
                 {/* Eyebrow with Purple Accent Line */}
-                <div className="flex items-center gap-3 mb-6 md:mb-8">
-                    <span className="w-8 md:w-10 h-[2px] bg-[#a855f7] inline-block rounded-full shadow-[0_0_8px_#a855f7]"></span>
-                    <p className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#a79bbd] uppercase">
+                <div className="flex items-center gap-2.5 mb-6 md:mb-8">
+                    <span className="w-6 md:w-8 h-[1.5px] bg-[#a855f7] inline-block rounded-full shadow-[0_0_6px_#a855f7]"></span>
+                    <p className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#8e859f] uppercase">
                         THE ODYSSEY
                     </p>
                 </div>
 
-                {/* Editorial Statement with Progressive Scroll Reveal */}
-                <div className="flex flex-col gap-2 mb-16 md:mb-24">
-                    <div className="w-full md:w-[94%] lg:w-[88%] text-[28px] sm:text-[36px] md:text-[54px] lg:text-[62px] leading-[1.12] md:leading-[1.08] font-normal tracking-[-0.015em]">
+                {/* Editorial Statement with Refined Scale */}
+                <div className="flex flex-col gap-1.5 mb-14 md:mb-20">
+                    <div className="w-full md:w-[92%] lg:w-[86%] text-[24px] sm:text-[30px] md:text-[38px] lg:text-[44px] leading-[1.24] md:leading-[1.18] font-normal tracking-[-0.012em]">
                         <div className="w-full welcome-text flex flex-col justify-center items-start">
                             {welcomeLines.map((text, index) => (
                                 <span key={index} className="relative block text-darkBrown">
@@ -81,18 +81,18 @@ const Welcome = () => {
                     </div>
                 </div>
 
-                {/* Second Part: Two Organic Visuals + Refined Statement */}
-                <div className="flex md:flex-row flex-col justify-between items-start md:items-center gap-10 md:gap-14 pt-4">
-                    {/* Left: Organic Hackathon Visuals */}
+                {/* Second Part: Proportional Organic Visuals + Statement */}
+                <div className="flex md:flex-row flex-col justify-between items-start md:items-center gap-8 md:gap-12 pt-2">
+                    {/* Left: Sleek Organic Pill Visuals */}
                     <div className="flex flex-row justify-start items-center gap-3 sm:gap-4 welcome-image-card">
-                        <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] md:rounded-[4rem] w-40 sm:w-52 md:w-60 lg:w-68 aspect-[15/11] border border-purple-500/25 shadow-[0_0_25px_rgba(168,85,247,0.15)] group">
+                        <div className="overflow-hidden rounded-[2.2rem] sm:rounded-[2.6rem] md:rounded-[3rem] w-36 sm:w-44 md:w-52 lg:w-56 aspect-[16/11] border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.12)] group">
                             <img
                                 src={w1}
                                 alt="Hackathon team collaborating"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                         </div>
-                        <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] md:rounded-[4rem] w-40 sm:w-52 md:w-60 lg:w-68 aspect-[15/11] border border-purple-500/25 shadow-[0_0_25px_rgba(168,85,247,0.15)] group">
+                        <div className="overflow-hidden rounded-[2.2rem] sm:rounded-[2.6rem] md:rounded-[3rem] w-36 sm:w-44 md:w-52 lg:w-56 aspect-[16/11] border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.12)] group">
                             <img
                                 src={w2}
                                 alt="Developer coding at hackathon"
@@ -103,14 +103,14 @@ const Welcome = () => {
 
                     {/* Right: Refined Statement Block Matching Reference */}
                     <div className="md:w-1/2 w-full welcome-statement flex flex-col justify-center">
-                        <p className="text-xl sm:text-2xl md:text-[2rem] lg:text-[2.2rem] text-[#d1ccd8] leading-[1.28] md:leading-[1.24] font-normal tracking-[-0.2px]">
+                        <p className="text-lg sm:text-xl md:text-2xl lg:text-[1.7rem] text-[#c7c2d1] leading-[1.32] md:leading-[1.28] font-normal tracking-[-0.2px]">
                             <span>One challenge.</span><br />
                             <span>One team.</span><br />
                             <span><strong className="font-bold text-white">One</strong> idea at a time.</span>
                         </p>
-                        <div className="flex items-center gap-2 mt-6 md:mt-8">
+                        <div className="flex items-center gap-2 mt-5 md:mt-6">
                             <span className="w-4 h-[1.5px] bg-[#a855f7] inline-block"></span>
-                            <span className="text-[10px] sm:text-xs md:text-[13px] tracking-[0.22em] font-semibold text-[#8b82a0] uppercase">
+                            <span className="text-[10px] sm:text-[11px] tracking-[0.22em] font-semibold text-[#716886] uppercase">
                                 KARE &middot; ACM STUDENT CHAPTER
                             </span>
                         </div>

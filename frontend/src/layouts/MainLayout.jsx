@@ -12,6 +12,7 @@ import ReserveBtn from "../components/Buttons/ReserveBtn";
 import Logo from "../components/Buttons/Logo";
 import Footer from "../components/Footer/Footer";
 import FooterTitle from "../components/Footer/FooterTitle";
+import CustomCursor from "../components/Cursor/CustomCursor";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -28,6 +29,7 @@ const MainLayout = () => {
 
     return (
         <>
+            <CustomCursor />
             <PreloaderII />
             <Logo />
             <Navbar />
