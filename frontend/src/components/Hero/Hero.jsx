@@ -1,22 +1,26 @@
+import React, { useRef } from "react";
 import gsap from "gsap/all";
-import heroBg from "../../assets/hero_section.png";
-import mobileHeroBg from "../../assets/hero_section_mobile.png";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
 import { MdArrowOutward } from "react-icons/md";
-import AnimateBtn from "../Buttons/AnimateBtn";
+import heroBg from "../../assets/hero_section.png";
+import mobileHeroBg from "../../assets/hero_section_mobile.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+    const heroRef = useRef(null);
     const isMobHero = useMediaQuery({
         query: "(max-width:768px)",
     });
 
     useGSAP(() => {
+        // 1. Background gentle parallax scale on scroll
         if (!isMobHero) {
             gsap.to(".hero-section .hero-img", {
-                yPercent: "-5",
-                stagger: 0.02,
-                scale: 1.2,
+                yPercent: -6,
+                scale: 1.12,
                 ease: "power1.inOut",
                 scrollTrigger: {
                     trigger: ".hero-section",
@@ -26,59 +30,161 @@ const Hero = () => {
                 }
             });
         }
-    }, [isMobHero]);
+
+        // 2. Entrance Animation for Eyebrow & Top-Left Title "HACK"
+        gsap.from(".hero-eyebrow", {
+            x: -25,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: 0.1,
+        });
+
+        gsap.from(".hero-title-hack", {
+            y: 70,
+            opacity: 0,
+            duration: 1.1,
+            ease: "power4.out",
+            delay: 0.2,
+        });
+
+        // 3. Entrance Animation for Subtitle & Button
+        gsap.from(".hero-subtext, .hero-btn-wrap", {
+            y: 35,
+            opacity: 0,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: "power3.out",
+            delay: 0.35,
+        });
+
+        // 4. Entrance Animation for Venue Block (Bottom-Left)
+        gsap.from(".hero-venue-box", {
+            y: 40,
+            opacity: 0,
+            duration: 1.0,
+            ease: "power3.out",
+            delay: 0.45,
+        });
+
+        // 5. Entrance Animation for Bottom-Right Title "ODYSSEY" & Circled "4.0" Exponent
+        gsap.from(".hero-title-odyssey, .hero-badge-exponent", {
+            y: 70,
+            opacity: 0,
+            duration: 1.1,
+            stagger: 0.1,
+            ease: "power4.out",
+            delay: 0.3,
+        });
+
+    }, { scope: heroRef, dependencies: [isMobHero] });
 
     return (
-        <section className="hero-section w-full md:h-dvh h-[100vh] relative overflow-hidden bg-[#030206]">
-            {/* Desktop background layer - full width edge-to-edge */}
+        <section 
+            ref={heroRef}
+            className="hero-section w-full min-h-dvh h-[100vh] relative overflow-hidden bg-[#030206] flex flex-col justify-between"
+        >
+            {/* Desktop Background Layer - Edge-to-edge */}
             <div
-                className="hero-img absolute inset-0 bg-no-repeat bg-cover bg-center z-0 md:block hidden"
+                className="hero-img absolute inset-0 bg-no-repeat bg-cover bg-center z-0 md:block hidden will-change-transform"
                 style={{ backgroundImage: `url(${heroBg})` }}
             />
 
-            {/* Mobile background layer - full width edge-to-edge */}
+            {/* Mobile Background Layer - Edge-to-edge */}
             <div
-                className="hero-img absolute inset-0 bg-no-repeat bg-cover bg-center z-0 md:hidden block"
+                className="hero-img absolute inset-0 bg-no-repeat bg-cover bg-center z-0 md:hidden block will-change-transform"
                 style={{ backgroundImage: `url(${mobileHeroBg})` }}
             />
 
-            {/* Bottom transition blend into The Odyssey section */}
-            <div className="absolute inset-x-0 bottom-0 h-40 sm:h-56 md:h-72 bg-gradient-to-b from-transparent via-[#030206]/70 to-[#030206] pointer-events-none z-10" />
+            {/* Subtle Gradient Overlays for High-End Contrast & Smooth Section Transition */}
+            <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#030206]/80 via-[#030206]/35 to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-48 sm:h-64 bg-gradient-to-t from-[#030206] via-[#030206]/80 to-transparent pointer-events-none z-10" />
 
-            {/* Center Aligned Content Overlay */}
-            <div className="relative z-20 w-full h-full flex flex-col items-center justify-start pt-10 sm:pt-14 md:pt-16 lg:pt-18 px-4 text-center select-none">
-                {/* Eyebrow Label */}
-                <p className="text-[#cbd5e1] text-[0.7rem] sm:text-xs md:text-sm font-semibold tracking-[0.25em] uppercase mb-1.5 md:mb-2">
-                    24 HOURS &middot; HACKATHON
-                </p>
+            {/* Asymmetrical 4-Corner Layout Container */}
+            <div className="relative z-20 w-full h-full flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 md:pb-12 px-6 sm:px-10 md:px-14 lg:px-16 select-none pointer-events-none">
+                
+                {/* ════════════ TOP ROW: TOP-LEFT TITLE + SUBTITLE + CTA BUTTON ════════════ */}
+                <div className="flex justify-between items-start w-full pointer-events-auto">
+                    
+                    {/* TOP-LEFT: EYEBROW + GIANT "HACK" + SUBTITLE + REGISTER NOW */}
+                    <div className="flex flex-col items-start max-w-xl text-left">
+                        {/* Eyebrow: KARE ACM PRESENTS */}
+                        <div className="hero-eyebrow flex items-center gap-2 mb-2 sm:mb-2.5">
+                            <span className="w-5 sm:w-6 h-[1.5px] bg-[#a855f7] rounded-full inline-block shadow-[0_0_6px_#a855f7]" />
+                            <p className="text-[10px] sm:text-xs font-mono font-semibold tracking-[0.25em] text-[#d8b4fe] uppercase">
+                                KARE ACM PRESENTS
+                            </p>
+                        </div>
 
-                {/* Main Heading */}
-                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider leading-tight uppercase">
-                    HACK ODYSSEY
-                </h1>
+                        <h1 className="hero-title-hack font-hero-bebas text-white tracking-tight uppercase leading-[0.82] text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)]">
+                            HACK
+                        </h1>
 
-                {/* Subtitle / Edition */}
-                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider leading-tight mt-1 mb-1.5 md:mb-2">
-                    2K26
-                </h2>
+                        {/* Unified Subtitle & Date Description */}
+                        <div className="hero-subtext mt-2 sm:mt-3 md:mt-4 text-[#cbd5e1] text-xs sm:text-sm md:text-base font-normal tracking-wide max-w-xs sm:max-w-sm drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+                            <p className="text-white font-medium text-sm sm:text-base">
+                                Enter the Code Dimension
+                            </p>
+                            <p className="text-[#a199b0] text-xs sm:text-sm mt-1 leading-relaxed">
+                                October 27 – 28, 2026 &middot; 24-Hour Hackathon
+                            </p>
+                        </div>
 
-                {/* Tagline */}
-                <p className="text-[#cbd5e1] text-xs sm:text-sm font-medium tracking-wide max-w-md mx-auto mb-4 md:mb-5">
-                    24-hour student hackathon
-                </p>
-
-                {/* Center CTA Button - Website Signature Component */}
-                <a
-                    href="#register"
-                    className="w-fit bg-[#f4efe7] hover:bg-[#ffffff] px-4 py-1.5 flex items-center justify-center rounded-4xl gap-2.5 shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
-                >
-                    <div className="text-[#2a2725] font-medium text-[12px] md:text-[13px] tracking-tight">
-                        <AnimateBtn btnName="Register Now" />
+                        {/* CTA Button (Replacing "Watch Trailer" from Reference UI) */}
+                        <div className="hero-btn-wrap mt-4 sm:mt-5 md:mt-6">
+                            <a
+                                href="#prizepool"
+                                className="inline-flex items-center gap-2.5 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#f4efe7] hover:bg-white text-[#181717] font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(244,239,231,0.3)] hover:shadow-[0_0_35px_rgba(244,239,231,0.55)] transition-all duration-300 transform hover:scale-105 active:scale-95 group cursor-pointer"
+                            >
+                                <span className="font-semibold tracking-wider text-[11px] sm:text-xs">
+                                    REGISTER NOW
+                                </span>
+                                <div className="w-5 h-5 rounded-full bg-[#181717] text-[#f4efe7] flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
+                                    <MdArrowOutward className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div className="bg-[#2a2725] rounded-full p-1.5 flex items-center justify-center">
-                        <MdArrowOutward className="text-[#f4efe7] w-3 h-3 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+
+                </div>
+
+                {/* ════════════ BOTTOM ROW: BOTTOM-LEFT VENUE + BOTTOM-RIGHT TITLE & 4.0 EXPONENT ════════════ */}
+                <div className="flex flex-col-reverse sm:flex-row justify-between items-start sm:items-end w-full gap-6 sm:gap-4 pointer-events-auto mt-auto">
+                    
+                    {/* BOTTOM-LEFT: CLEAN UNIFIED VENUE & LOCATION */}
+                    <div className="hero-venue-box max-w-xs sm:max-w-sm text-left select-none drop-shadow-[0_2px_15px_rgba(0,0,0,0.9)]">
+                        <div className="flex items-center gap-2 mb-1.5">
+                            <span className="w-3.5 h-[1.5px] bg-[#a855f7] rounded-full inline-block shadow-[0_0_6px_#a855f7]" />
+                            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#a855f7] uppercase">
+                                VENUE &middot; CAMPUS
+                            </span>
+                        </div>
+                        <h4 className="text-white text-xs sm:text-sm md:text-base font-semibold tracking-tight uppercase leading-snug">
+                            Kalasalingam Academy of Research and Education
+                        </h4>
+                        <p className="text-[#a199b0] text-[11px] sm:text-xs tracking-wide mt-0.5">
+                            Tech Arena & Auditorium &middot; Tamil Nadu
+                        </p>
                     </div>
-                </a>
+
+                    {/* BOTTOM-RIGHT: GIANT "ODYSSEY" + CIRCLED "4.0" EXPONENT (Matching Capsule®) */}
+                    <div className="hero-bottom-right flex flex-col items-start sm:items-end text-left sm:text-right select-none w-full sm:w-auto">
+                        <div className="relative inline-flex items-start">
+                            <h1 className="hero-title-odyssey font-hero-bebas text-white tracking-tight uppercase leading-[0.82] text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)]">
+                                ODYSSEY
+                            </h1>
+                            {/* Exponential Circled 4.0 Badge (Classic Capsule ® Style) */}
+                            <span 
+                                className="hero-badge-exponent inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full border-[1.5px] md:border-2 border-white/80 text-white font-mono font-bold text-[9px] sm:text-[11px] md:text-xs lg:text-sm -mt-1 sm:-mt-2 md:-mt-3 ml-1 sm:ml-2 shadow-[0_0_15px_rgba(168,85,247,0.4)] backdrop-blur-sm bg-purple-950/40 select-none shrink-0"
+                                title="Version 4.0"
+                            >
+                                4.0
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </section>
     );

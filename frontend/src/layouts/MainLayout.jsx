@@ -31,7 +31,6 @@ const MainLayout = () => {
         <>
             <CustomCursor />
             <PreloaderII />
-            <Logo />
             <Navbar />
             <div id="smooth-wrapper">
                 <div id="smooth-content">

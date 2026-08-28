@@ -8,7 +8,7 @@ import MarqueeText from '../Marquee/MarqueeText';
 const Footer = () => {
     return (
         <section className='w-screen h-dvh px-6 mt-10'>
-            <p className='text-[.7rem] text-[#eae5dd] choose-subtitle mt-10'>Interested in an amazing adventure?<br />Reserve one of our Capsules<span>®</span></p>
+            <p className='text-[.7rem] text-[#eae5dd] choose-subtitle mt-10'>Ready to embark on the 24-hour coding odyssey?<br />Register for Hack Odyssey 4.0<span>®</span></p>
             <div>
                 <MarqueeText />
             </div>
@@ -41,8 +41,8 @@ const Footer = () => {
 
                 <div>
                     <p className="text-[0.8rem] text-[#b1a696] text-right">
-                        Meet Capsules®—modern and cozy<br />
-                        houses, in the California desert.
+                        Hack Odyssey 4.0 &middot; 24-Hour Hackathon<br />
+                        KARE ACM Student Chapter, Tamil Nadu.
                     </p>
                 </div>
             </div>

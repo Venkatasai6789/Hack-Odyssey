@@ -1,0 +1,28 @@
+/* Hack Odyssey Video Highlight Section Styles */
+
+.video-highlight-section {
+    background-color: #030206;
+    color: #f4efe7;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    z-index: 10;
+}
+
+.video-box {
+    will-change: clip-path;
+}
+
+.spin-circle-container {
+    animation: spinCircle 18s linear infinite;
+    transform-origin: center center;
+}
+
+@keyframes spinCircle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

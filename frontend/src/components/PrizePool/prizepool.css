@@ -1,303 +1,425 @@
-/* ----------------- Prize Pool Section Styles ----------------- */
+/* ==========================================================================
+   HACK ODYSSEY 4.0 — PRIZE POOL SECTION (EDITORIAL AWWWARDS REDESIGN)
+   Visual System: Typography + SpyltMilk Scroll Reveal + Tilted Hero Card
+   ========================================================================== */
 
 .prizepool-section {
     position: relative;
-    background-color: #030206;
-    color: #f4efe7;
+    background-color: #03030B;
+    color: #F5F3FF;
     overflow: hidden;
-    padding: 7vw 0;
-}
-
-.prizepool-title {
-    width: 70%;
-    margin-left: 30%;
-    position: relative;
-    z-index: 10;
-    text-transform: uppercase;
-    font-size: 7.2vw;
-    font-weight: 600;
-    line-height: 7.3vw;
-    font-family: 'plain regular', sans-serif;
-    color: #ffffff;
-}
-
-#prizepool-underline {
-    height: 2px;
-    width: 70%;
-    margin: 3.5vw 2vw 4vw 30%;
-    background: #ffffff;
-    position: relative;
-    z-index: 10;
-}
-
-/* Kinetic Layered Typography Container */
-.kinetic-text-wrap {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding: 3vw 0;
-}
-
-.ghost-text-track {
-    font-family: 'plain regular', sans-serif;
-    font-size: 11vw;
-    font-weight: 800;
-    line-height: 0.9;
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: transparent;
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.07);
-    user-select: none;
-    pointer-events: none;
-    letter-spacing: -0.02em;
-    will-change: transform;
-}
-
-/* Center Highlight Badge (Inspired by reference UI 'FUEL UP') */
-.angled-badge-container {
-    position: relative;
-    z-index: 20;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: -4vw 0 4vw 0;
-}
-
-.angled-badge {
-    background: linear-gradient(135deg, #ffa63d 0%, #ff7b00 100%);
-    color: #0d0905;
-    padding: 1.2vw 3.5vw;
-    border-radius: 1.2rem;
-    transform: rotate(-3.5deg);
-    box-shadow: 0 15px 35px rgba(255, 123, 0, 0.35), 0 0 50px rgba(255, 166, 61, 0.2);
-    cursor: default;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    will-change: transform;
-}
-
-.angled-badge:hover {
-    transform: rotate(0deg) scale(1.06);
-    box-shadow: 0 20px 45px rgba(255, 123, 0, 0.5), 0 0 70px rgba(255, 166, 61, 0.4);
-}
-
-.angled-badge-title {
-    font-family: 'plain regular', sans-serif;
-    font-size: 3.2vw;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-
-.angled-badge-sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95vw;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.9;
-    text-align: center;
-    margin-top: 0.3vw;
-}
-
-/* 3D Prize Cards Grid */
-.prize-cards-grid {
-    position: relative;
-    z-index: 15;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2vw;
-    max-width: 82rem;
-    margin: 0 auto;
-    padding: 0 3vw;
-    perspective: 1200px;
-}
-
-/* Individual Prize Card */
-.prize-card {
-    position: relative;
-    background: radial-gradient(
-        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(255, 255, 255, 0.08),
-        rgba(18, 15, 28, 0.85) 40%,
-        rgba(8, 6, 14, 0.95) 80%
-    );
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 2rem;
-    padding: 2.5rem 2rem;
+    min-height: 120vh;
+    padding: 7vh 0 10vh 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 540px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transform-style: preserve-3d;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    align-items: center;
+}
+
+/* Atmospheric Background Typography */
+.prizepool-bg-word {
+    position: absolute;
+    font-family: 'Bebas Neue', 'Big Shoulders Display', 'plain regular', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ffffff;
+    opacity: 0.035;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
     will-change: transform;
 }
 
-/* 1st Prize Grand Card Elevation */
-.prize-card-first {
-    background: radial-gradient(
-        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(251, 191, 36, 0.15),
-        rgba(28, 22, 16, 0.9) 40%,
-        rgba(10, 8, 5, 0.98) 80%
-    );
-    border: 1.5px solid rgba(251, 191, 36, 0.4);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px rgba(251, 191, 36, 0.15);
-    transform: translateY(-1.5rem);
+.bg-word-compete {
+    top: 4%;
+    left: -2%;
+    font-size: clamp(100px, 16vw, 240px);
 }
 
-.prize-card-first:hover {
-    border-color: rgba(251, 191, 36, 0.8);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 60px rgba(251, 191, 36, 0.35);
+.bg-word-create {
+    top: 38%;
+    left: -3%;
+    font-size: clamp(110px, 18vw, 260px);
 }
 
-/* 2nd Prize Silver Card */
-.prize-card-second {
-    border: 1px solid rgba(203, 213, 225, 0.25);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(168, 85, 247, 0.1);
+.bg-word-conquer {
+    top: 22%;
+    right: -3%;
+    font-size: clamp(110px, 17vw, 250px);
 }
 
-.prize-card-second:hover {
-    border-color: rgba(203, 213, 225, 0.6);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 45px rgba(203, 213, 225, 0.25);
+/* Eyebrow Treatment */
+.prizepool-eyebrow-line {
+    width: clamp(24px, 4vw, 48px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #B88CFF, transparent);
+    display: inline-block;
 }
 
-/* 3rd Prize Bronze Card */
-.prize-card-third {
-    border: 1px solid rgba(249, 115, 22, 0.25);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(249, 115, 22, 0.1);
+.prizepool-eyebrow-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    color: #B88CFF;
+    text-transform: uppercase;
 }
 
-.prize-card-third:hover {
-    border-color: rgba(249, 115, 22, 0.6);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 45px rgba(249, 115, 22, 0.25);
+/* Main Display Headlines */
+.prize-display-font {
+    font-family: 'Bebas Neue', 'Big Shoulders Display', 'plain regular', sans-serif;
+    letter-spacing: 0.02em;
+    line-height: 0.92;
 }
 
-/* Card Holographic Spotlight Overlay */
-.card-spotlight {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    background: radial-gradient(
-        400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(255, 255, 255, 0.15),
-        transparent 60%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
+/* SpyltMilk Scrubbing Words */
+.first-msg-word,
+.second-msg-word {
+    color: rgba(245, 243, 255, 0.18); /* Dim initial state for scrub */
+    display: inline-block;
+    will-change: color, transform;
+    transition: color 0.1s ease-out;
 }
 
-.prize-card:hover .card-spotlight {
-    opacity: 1;
+.first-message {
+    font-size: clamp(48px, 6.8vw, 105px);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.94;
+    max-width: 90rem;
+    margin: 0 auto;
 }
 
-/* Amount Display Typography */
-.prize-amount {
-    font-family: 'plain regular', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: baseline;
+.second-message {
+    font-size: clamp(42px, 5.8vw, 92px);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.96;
+    max-width: 85rem;
+    margin: 0 auto;
 }
 
-/* Shimmer Gold Text */
-.gold-shimmer {
-    background: linear-gradient(135deg, #ffffff 0%, #fde68a 30%, #fbbf24 60%, #d97706 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Shimmer Silver Text */
-.silver-shimmer {
-    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #94a3b8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Shimmer Bronze Text */
-.bronze-shimmer {
-    background: linear-gradient(135deg, #ffffff 0%, #fdba74 40%, #ea580c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Extra Categories Pill Strip */
-.bonus-tracks-container {
+/* Central Hero Tilted ₹1,00,000 Accent Container */
+.hero-prize-scroll-container {
     position: relative;
-    z-index: 15;
-    max-width: 82rem;
-    margin: 5rem auto 0 auto;
-    padding: 0 3vw;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh 0;
+    z-index: 10;
+    perspective: 1000px;
 }
 
-.bonus-pill {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+/* Tilted Box following SpyltMilk FUEL UP concept */
+.hero-prize-box {
+    position: relative;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(45, 18, 92, 0.9) 0%,
+        rgba(20, 10, 48, 0.95) 70%,
+        rgba(10, 4, 24, 0.98) 100%
+    );
+    border: 1.8px solid rgba(124, 60, 255, 0.7);
+    border-radius: 16px;
+    padding: clamp(0.7rem, 1.5vw, 1.3rem) clamp(2.2rem, 5.5vw, 5rem);
+    transform: rotate(-3.5deg);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 45px rgba(124, 60, 255, 0.45),
+        0 0 90px rgba(124, 60, 255, 0.22),
+        inset 0 0 25px rgba(184, 140, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    overflow: visible;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    will-change: clip-path, transform;
+}
+
+.hero-prize-box:hover {
+    transform: rotate(0deg) scale(1.05);
+    border-color: rgba(184, 140, 255, 0.9);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(124, 60, 255, 0.6),
+        0 0 110px rgba(184, 140, 255, 0.3),
+        inset 0 0 35px rgba(184, 140, 255, 0.25);
+}
+
+/* Side Light Flare Beams */
+.hero-prize-flare-left,
+.hero-prize-flare-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    width: clamp(35px, 6.5vw, 75px);
+    pointer-events: none;
+}
+
+.hero-prize-flare-left {
+    right: 100%;
+    background: linear-gradient(270deg, #B88CFF 0%, rgba(124, 60, 255, 0.7) 40%, transparent 100%);
+    box-shadow: 0 0 12px #7C3CFF;
+}
+
+.hero-prize-flare-right {
+    left: 100%;
+    background: linear-gradient(90deg, #B88CFF 0%, rgba(124, 60, 255, 0.7) 40%, transparent 100%);
+    box-shadow: 0 0 12px #7C3CFF;
+}
+
+.hero-prize-flare-dot-left,
+.hero-prize-flare-dot-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 14px 4px #B88CFF, 0 0 22px 7px #7C3CFF;
+}
+
+.hero-prize-flare-dot-left {
+    right: -3.5px;
+}
+
+.hero-prize-flare-dot-right {
+    left: -3.5px;
+}
+
+/* ₹1,00,000 Typography */
+.hero-prize-amount {
+    font-family: 'Bebas Neue', 'Big Shoulders Display', 'plain regular', sans-serif;
+    font-size: clamp(68px, 9.6vw, 142px);
+    font-weight: 900;
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    color: #F5F3FF;
+    text-shadow: 
+        0 0 25px rgba(184, 140, 255, 0.4),
+        0 0 50px rgba(124, 60, 255, 0.25);
+    display: inline-block;
+    will-change: transform;
+}
+
+/* Editorial Description Paragraph (Matching SpyltMilk) */
+.prize-editorial-desc {
+    max-width: 44rem;
+    margin: 3.5vh auto 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.prize-editorial-desc p {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.15vw, 16px);
+    line-height: 1.65;
+    font-weight: 400;
+    color: #A8A4BA;
+    text-align: center;
+}
+
+.para-word {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* Supporting Copy & Divider Motif */
+.prizepool-supporting-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(11px, 1.05vw, 13.5px);
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    color: #B88CFF;
+    text-transform: uppercase;
+}
+
+.prizepool-divider-motif {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 1.5vh;
+    opacity: 0.75;
+}
+
+.prizepool-divider-line {
+    width: clamp(24px, 4vw, 45px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 140, 255, 0.6), transparent);
+}
+
+.prizepool-diamond {
+    width: 6px;
+    height: 6px;
+    background: #B88CFF;
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px #B88CFF;
+}
+
+/* Bottom 3-Column Editorial Grid */
+.prize-columns-container {
+    width: 100%;
+    max-width: 76rem;
+    margin: 5vh auto 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.prize-column-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1.2rem;
+    cursor: default;
+    position: relative;
     border-radius: 1.5rem;
-    padding: 1.5rem 1.8rem;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease;
 }
 
-.bonus-pill:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(168, 85, 247, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+.prize-column-separator {
+    width: 1px;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(124, 60, 255, 0.35) 40%, rgba(184, 140, 255, 0.45) 50%, rgba(124, 60, 255, 0.35) 60%, transparent);
+}
+
+/* Column Elements */
+.prize-rank-number {
+    font-family: 'Bebas Neue', 'Big Shoulders Display', 'plain regular', sans-serif;
+    font-size: clamp(28px, 2.7vw, 38px);
+    font-weight: 700;
+    color: #B88CFF;
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+.prize-rank-underline {
+    width: 26px;
+    height: 1.5px;
+    background: #7C3CFF;
+    margin: 6px 0 14px 0;
+    transition: width 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+    border-radius: 1px;
+}
+
+.prize-col-amount {
+    font-family: 'Bebas Neue', 'Big Shoulders Display', 'plain regular', sans-serif;
+    font-size: clamp(40px, 4.6vw, 60px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: #F5F3FF;
+    margin-bottom: 12px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.35s ease;
+    will-change: transform;
+}
+
+.prize-col-amount-first {
+    font-size: clamp(46px, 5.2vw, 68px);
+    text-shadow: 0 0 20px rgba(184, 140, 255, 0.35);
+}
+
+.prize-rank-label {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(11px, 1vw, 13.5px);
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    color: #A8A4BA;
+    text-transform: uppercase;
+    transition: color 0.35s ease;
+}
+
+/* Hover Interactions on Desktop */
+@media (hover: hover) and (pointer: fine) {
+    .prize-column-item:hover {
+        transform: translateY(-5px);
+        background-color: rgba(124, 60, 255, 0.04);
+    }
+
+    .prize-column-item:hover .prize-col-amount {
+        transform: scale(1.04);
+        text-shadow: 0 0 25px rgba(184, 140, 255, 0.55), 0 0 50px rgba(124, 60, 255, 0.35);
+        color: #ffffff;
+    }
+
+    .prize-column-item:hover .prize-rank-underline {
+        width: 42px;
+        background: #B88CFF;
+        box-shadow: 0 0 12px #B88CFF;
+    }
+
+    .prize-column-item:hover .prize-rank-label {
+        color: #F5F3FF;
+    }
 }
 
 /* Mobile & Tablet Responsiveness */
-@media (max-width: 1024px) {
-    .prize-cards-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 0 1.5rem;
-    }
-
-    .prize-card {
+@media (max-width: 768px) {
+    .prizepool-section {
         min-height: auto;
+        padding: 5rem 1.25rem;
     }
 
-    .prize-card-first {
-        transform: translateY(0);
-        order: -1;
+    .first-message {
+        font-size: clamp(34px, 9vw, 48px);
     }
 
-    .ghost-text-track {
-        font-size: 16vw;
+    .second-message {
+        font-size: clamp(30px, 8vw, 42px);
     }
 
-    .angled-badge {
-        padding: 1rem 2rem;
-        transform: rotate(-2deg);
+    .hero-prize-box {
+        transform: rotate(-2.5deg);
+        padding: 0.8rem 1.8rem;
     }
 
-    .angled-badge-title {
-        font-size: 1.8rem;
+    .prize-columns-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+        padding: 0;
     }
 
-    .angled-badge-sub {
-        font-size: 0.75rem;
+    .prize-column-separator {
+        width: 60%;
+        height: 1px;
+        margin: 0 auto;
+        background: linear-gradient(90deg, transparent, rgba(124, 60, 255, 0.35) 50%, transparent);
     }
 
-    .prizepool-title {
-        width: 88%;
-        margin-left: 12%;
-        font-size: 11vw;
-        line-height: 11vw;
+    .hero-prize-flare-left,
+    .hero-prize-flare-right {
+        width: 22px;
     }
 
-    #prizepool-underline {
-        width: 88%;
-        margin-left: 12%;
+    .bg-word-compete,
+    .bg-word-create,
+    .bg-word-conquer {
+        opacity: 0.02;
+    }
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .prizepool-bg-word,
+    .hero-prize-box,
+    .hero-prize-amount,
+    .prize-column-item,
+    .prize-col-amount,
+    .first-msg-word,
+    .second-msg-word,
+    .para-word {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
     }
 }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Big+Shoulders+Display:wght@700;800;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @font-face {
@@ -44,6 +44,14 @@
 .font-silk-serif {
 	font-family: 'silk serif', Georgia, serif;
 	font-style: italic;
+}
+
+.font-hero-bebas {
+	font-family: 'Bebas Neue', sans-serif;
+}
+
+.font-hero-shoulders {
+	font-family: 'Big Shoulders Display', sans-serif;
 }
 
 :root {
