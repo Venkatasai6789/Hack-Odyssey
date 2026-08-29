@@ -2,8 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import { useMediaQuery } from "react-responsive";
 import { welcomeLinesLG, welcomeLinesSM } from "../../constants/welcome";
-import w1 from "../../assets/welcome-1.jpg";
-import w2 from "../../assets/welcome-2.jpg";
+import eyebrow1 from "../../assets/eyebrow_1.jpg";
+import eyebrow2 from "../../assets/eyebrow_2.jpg";
 import section2Bg from "../../assets/section_2.png";
 
 const Welcome = () => {
@@ -87,14 +87,14 @@ const Welcome = () => {
                     <div className="flex flex-row justify-start items-center gap-3 sm:gap-4 welcome-image-card">
                         <div className="overflow-hidden rounded-[2.2rem] sm:rounded-[2.6rem] md:rounded-[3rem] w-36 sm:w-44 md:w-52 lg:w-56 aspect-[16/11] border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.12)] group">
                             <img
-                                src={w1}
+                                src={eyebrow1}
                                 alt="Hackathon team collaborating"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                         </div>
                         <div className="overflow-hidden rounded-[2.2rem] sm:rounded-[2.6rem] md:rounded-[3rem] w-36 sm:w-44 md:w-52 lg:w-56 aspect-[16/11] border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.12)] group">
                             <img
-                                src={w2}
+                                src={eyebrow2}
                                 alt="Developer coding at hackathon"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />

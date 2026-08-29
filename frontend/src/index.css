@@ -400,6 +400,11 @@ body {
 	pointer-events: none;
 }
 
+/* Hide cursor ring while preloader is visible */
+body:has(.hackodyssey-preloader) #crsr {
+	opacity: 0 !important;
+	transition: opacity 0.3s ease;
+}
 /* ----------------- Obys Page3 Section Styles ----------------- */
 #page3 {
 	min-height: 100vh;

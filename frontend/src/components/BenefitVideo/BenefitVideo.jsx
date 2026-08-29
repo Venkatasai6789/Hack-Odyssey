@@ -18,7 +18,7 @@ const BenefitVideo = () => {
                 trigger: containerRef.current,
                 start: "top 80%",
                 end: "top 25%",
-                scrub: 1.2,
+                scrub: 1,
             }
         });
 
@@ -49,16 +49,12 @@ const BenefitVideo = () => {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="video-highlight-section w-full bg-[#030206] text-[#f4efe7] relative overflow-hidden">
-            {/* Ambient Nebula Violet Lighting matching Gallery and PrizePool */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#25104A]/30 rounded-full blur-[170px] pointer-events-none z-0" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[#7C3CFF]/14 rounded-full blur-[150px] pointer-events-none z-0" />
-            
+        <section ref={containerRef} className="video-highlight-section w-full bg-[#030206] text-[#f4efe7] relative">
             {/* Top Introductory Section Tailored to Hack Odyssey */}
             <div className="max-w-6xl mx-auto pt-20 sm:pt-28 pb-10 sm:pb-14 px-6 sm:px-12 flex flex-col items-center text-center relative z-10">
                 {/* Eyebrow with Purple Accent Line */}
-                <div className="odyssey-video-eyebrow flex items-center gap-2.5 mb-5 select-none">
-                    <span className="w-6 md:w-8 h-[1.5px] bg-[#a855f7] inline-block rounded-full shadow-[0_0_8px_#a855f7]"></span>
+                <div className="odyssey-video-eyebrow flex items-center gap-2.5 mb-4 select-none">
+                    <span className="w-6 md:w-8 h-[1.5px] bg-[#a855f7] inline-block rounded-full shadow-[0_0_6px_#a855f7]"></span>
                     <p className="text-[11px] sm:text-xs font-mono font-semibold tracking-[0.25em] text-[#8e859f] uppercase">
                         THE EXPERIENCE &middot; HACK ODYSSEY 3.0
                     </p>
@@ -77,7 +73,7 @@ const BenefitVideo = () => {
                 </h2>
 
                 {/* Subtitle with Progressive Word-by-Word Reveal */}
-                <p className="max-w-xl text-xs sm:text-sm md:text-base font-mono text-[#8e859f] tracking-wider uppercase mt-5 sm:mt-7 leading-relaxed select-none">
+                <p className="max-w-xl text-xs sm:text-sm md:text-base font-mono text-[#8e859f] tracking-wider uppercase mt-4 sm:mt-6 leading-relaxed select-none">
                     {subtitleWords.map((word, idx) => (
                         <span key={idx} className="inline-block overflow-hidden mr-1.5">
                             <span className="odyssey-sub-word inline-block will-change-transform">

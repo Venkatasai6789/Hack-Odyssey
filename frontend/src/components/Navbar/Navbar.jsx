@@ -90,11 +90,11 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Navbar Header Bar */}
-      <nav className="fixed top-0 left-0 z-50 flex items-center justify-between px-6 sm:px-10 md:px-14 lg:px-16 py-5 sm:py-6 w-full bg-transparent pointer-events-none">
+      {/* Top Navbar Header Bar (3-Column Balanced Flex Layout at z-[1002] above menu overlay) */}
+      <nav className="fixed top-0 left-0 z-[1002] flex items-center justify-between px-6 sm:px-10 md:px-14 lg:px-16 py-5 sm:py-6 w-full bg-transparent pointer-events-none">
         
         {/* Left: ACM Logo (NO background) */}
-        <div className="flex items-center pointer-events-auto">
+        <div className="flex items-center pointer-events-auto flex-1 justify-start">
           <a
             href="#"
             className="nav-logo flex items-center justify-center cursor-pointer transition-transform"
@@ -108,8 +108,31 @@ const Navbar = () => {
           </a>
         </div>
 
+        {/* Center: Hamburger (☰) / Close (✕) Menu Button (Fixed at same position & dimensions) */}
+        <div className="flex items-center justify-center pointer-events-auto">
+          <button
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className={`menu-hover w-11 h-11 sm:w-12 sm:h-12 rounded-full backdrop-blur-xl border text-white flex items-center justify-center shadow-2xl transition-all duration-300 cursor-pointer group ${
+              isMenuOpen
+                ? "bg-white/15 hover:bg-white/25 border-white/40 text-white"
+                : "bg-[#18171f]/85 hover:bg-[#25232e] border-white/15 hover:border-purple-400/40 text-white"
+            }`}
+            aria-label={isMenuOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
+          >
+            {isMenuOpen ? (
+              <IoMdClose className="w-6 h-6 text-white group-hover:rotate-90 group-hover:scale-110 transition-transform duration-300" />
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-1.5">
+                <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300" />
+                <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300" />
+                <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-5 transition-all duration-300" />
+              </div>
+            )}
+          </button>
+        </div>
+
         {/* Right: Action Pill Button (Spylt Style: FIND STORES -> REGISTER NOW) */}
-        <div className="flex items-center pointer-events-auto">
+        <div className="flex items-center pointer-events-auto flex-1 justify-end">
           <a
             href="#prizepool"
             className="nav-cta px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#f4efe7] hover:bg-white text-[#181717] font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-[0_0_20px_rgba(244,239,231,0.4)] transition-all duration-300 flex items-center gap-2 group cursor-pointer"
@@ -119,23 +142,6 @@ const Navbar = () => {
           </a>
         </div>
       </nav>
-
-      {/* Center Top: 3-Horizontal-Line Hamburger Menu Button (Spylt Style) */}
-      <button
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="menu-hover fixed top-5 sm:top-6 left-1/2 -translate-x-1/2 z-[1001] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#18171f]/85 hover:bg-[#25232e] backdrop-blur-xl border border-white/15 hover:border-purple-400/40 text-white flex flex-col items-center justify-center gap-1.5 shadow-2xl transition-all duration-300 cursor-pointer group"
-        aria-label="Toggle Navigation Menu"
-      >
-        {isMenuOpen ? (
-          <IoMdClose className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
-        ) : (
-          <>
-            <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300" />
-            <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300" />
-            <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-5 transition-all duration-300" />
-          </>
-        )}
-      </button>
 
       {/* Expanded Full-Screen Menu Overlay (Centered Links + Socials, No Right Image) */}
       <div

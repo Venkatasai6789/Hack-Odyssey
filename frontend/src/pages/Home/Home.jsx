@@ -3,16 +3,15 @@ import Hero from '../../components/Hero/Hero'
 import Welcome from '../../components/Welcome/Welcome'
 import Coordinators from '../../components/Coordinators/Coordinators'
 import PrizePool from '../../components/PrizePool/PrizePool'
-import StickyCols from '../../components/StickyCols/StickyCols'
-import Gallery from '../../components/Gallery/Gallery'
+import Winners from '../../components/Winners/Winners'
 import BenefitVideo from '../../components/BenefitVideo/BenefitVideo'
-import MarqueeText from '../../components/Marquee/MarqueeText'
-import MarqueeSticky from '../../components/Layouts/MarqueeSticky'
+import Gallery from '../../components/Gallery/Gallery'
 import MapLink from '../../components/MapLink/MapLink'
+import MarqueeSticky from '../../components/Layouts/MarqueeSticky'
+import StickyCols from '../../components/StickyCols/StickyCols'
 import Activities from '../../components/Activities/Activities'
 import Showcase from '../../components/Showcase/Showcase'
 import Feedback from '../../components/Feedback/Feedback'
-import FooterBanner from '../../components/FooterBanner/FooterBanner'
 
 const Home = () => {
     return (
@@ -21,8 +20,9 @@ const Home = () => {
             <Welcome />
             <Coordinators />
             <PrizePool />
-            <Gallery />
+            <Winners />
             <BenefitVideo />
+            <Gallery />
             <div className="relative z-20 bg-[#181717] shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
                 <MapLink />
                 <MarqueeSticky />
@@ -30,9 +30,8 @@ const Home = () => {
                 <Activities />
                 <Showcase />
                 <Feedback />
-                <FooterBanner />
             </div>
-        </div >
+        </div>
     )
 }
 

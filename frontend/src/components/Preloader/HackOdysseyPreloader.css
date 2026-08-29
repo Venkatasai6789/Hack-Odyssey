@@ -1,0 +1,685 @@
+/* ============================================================
+   HACKODYSSEY 4.0 PRELOADER — ALL PHASES 1 → 7 (SCOPED)
+   ============================================================ */
+
+.hackodyssey-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #000000;
+  overflow: hidden;
+  z-index: 999999;
+  pointer-events: auto;
+  user-select: none;
+  contain: strict;
+  will-change: opacity, transform;
+}
+
+/* Base background */
+.hackodyssey-preloader .hop-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: 1;
+}
+
+/* Dormant Center Atmospheric Haze */
+.hackodyssey-preloader .hop-atmosphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 75vw;
+  max-width: 900px;
+  height: 75vh;
+  max-height: 900px;
+  transform: translate(-50%, -50%) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(147, 51, 234, 0.22) 0%,
+    rgba(88, 28, 135, 0.09) 40%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  border-radius: 50%;
+  will-change: transform, opacity;
+  z-index: 2;
+}
+
+/* Ambient Microscopic Particles (Phase 1) */
+.hackodyssey-preloader .hop-particles-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hackodyssey-preloader .hop-particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(216, 180, 254, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 2px rgba(168, 85, 247, 0.4);
+  will-change: opacity;
+}
+
+/* Dispersed ambient positions */
+.hackodyssey-preloader .hop-particle-a {
+  top: 22%;
+  left: 32%;
+  width: 1px;
+  height: 1px;
+}
+
+.hackodyssey-preloader .hop-particle-b {
+  top: 78%;
+  left: 68%;
+  width: 1px;
+  height: 1px;
+}
+
+.hackodyssey-preloader .hop-particle-c {
+  top: 15%;
+  left: 65%;
+  width: 0.8px;
+  height: 0.8px;
+}
+
+.hackodyssey-preloader .hop-particle-d {
+  top: 85%;
+  left: 30%;
+  width: 0.8px;
+  height: 0.8px;
+}
+
+/* ============================================================
+   ANTICIPATION GLOW (PHASE 3)
+   ============================================================ */
+
+.hackodyssey-preloader .hop-anticipation-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(233, 213, 255, 0.5) 0%,
+    rgba(168, 85, 247, 0.28) 35%,
+    rgba(147, 51, 234, 0.08) 60%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  border-radius: 50%;
+  will-change: transform, opacity;
+  z-index: 15;
+}
+
+/* ============================================================
+   CONTACT FLASH & ENERGY WAVE (PHASE 4)
+   ============================================================ */
+
+/* Micro White Contact Flash */
+.hackodyssey-preloader .hop-contact-flash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.95) 25%,
+    rgba(233, 213, 255, 0.7) 50%,
+    rgba(192, 132, 252, 0.25) 75%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  will-change: transform, opacity;
+  z-index: 35;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.9), 0 0 28px rgba(192, 132, 252, 0.6);
+}
+
+/* Soft Radial Energy Pulse */
+.hackodyssey-preloader .hop-energy-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(170px, 42vw);
+  height: min(170px, 42vw);
+  transform: translate(-50%, -50%) scale(0.2);
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(233, 213, 255, 0.5) 22%,
+    rgba(168, 85, 247, 0.3) 48%,
+    rgba(147, 51, 234, 0.1) 72%,
+    transparent 92%
+  );
+  border-radius: 50%;
+  will-change: transform, opacity;
+  z-index: 30;
+}
+
+/* Localized Contact Particles (18 particles) */
+.hackodyssey-preloader .hop-contact-particles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 32;
+}
+
+.hackodyssey-preloader .hop-contact-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.5px;
+  height: 1.5px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px rgba(233, 213, 255, 0.9), 0 0 8px rgba(168, 85, 247, 0.6);
+  will-change: transform, opacity;
+}
+
+/* Central Stable Energy Core */
+.hackodyssey-preloader .hop-central-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  pointer-events: none;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 4px 1px #ffffff,
+    0 0 10px 2px rgba(233, 213, 255, 0.9),
+    0 0 20px 4px rgba(168, 85, 247, 0.7);
+  will-change: transform, opacity;
+  z-index: 40;
+}
+
+/* ============================================================
+   INWARD CONVERGING ENERGY PARTICLES (PHASE 5)
+   ============================================================ */
+
+.hackodyssey-preloader .hop-converge-particles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 33;
+}
+
+.hackodyssey-preloader .hop-converge-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.5px;
+  height: 1.5px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px rgba(233, 213, 255, 0.9), 0 0 8px rgba(168, 85, 247, 0.6);
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   CENTRAL IDENTITY GROUP (PHASES 5, 6 & 7)
+   ============================================================ */
+
+.hackodyssey-preloader .hop-identity-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 50;
+  width: max-content;
+  max-width: 92vw;
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+/* Subtle Ambient Violet Halo behind Logo */
+.hackodyssey-preloader .hop-logo-halo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: min(320px, 65vw);
+  height: min(320px, 65vw);
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.22) 0%,
+    rgba(147, 51, 234, 0.08) 45%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 45;
+  will-change: transform, opacity;
+}
+
+/* KARE ACM Logo Container (Phase 5) */
+.hackodyssey-preloader .hop-logo-container {
+  position: relative;
+  width: clamp(130px, 13vw, 190px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  clip-path: circle(0% at 50% 50%);
+  -webkit-clip-path: circle(0% at 50% 50%);
+  z-index: 50;
+  overflow: hidden;
+  will-change: transform, opacity, filter, clip-path;
+}
+
+.hackodyssey-preloader .hop-logo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Subtle Single Light Sweep across Logo */
+.hackodyssey-preloader .hop-logo-sweep {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(233, 213, 255, 0.35) 50%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 52;
+}
+
+/* ============================================================
+   EVENT PRESENTATION LAYER (PRESENTS + HACK ODYSSEY ⁴˙⁰)
+   ============================================================ */
+
+.hackodyssey-preloader .hop-event-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.4rem;
+  pointer-events: none;
+  z-index: 55;
+  width: 100%;
+  will-change: transform, opacity;
+}
+
+/* PRESENTS Eyebrow */
+.hackodyssey-preloader .hop-presents-mask {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.5rem;
+}
+
+.hackodyssey-preloader .hop-presents-text {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
+  font-size: clamp(0.70rem, 1.1vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  color: #d8b4fe;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(168, 85, 247, 0.5);
+  line-height: 1.2;
+  will-change: transform, opacity;
+}
+
+/* HACK ODYSSEY Typography with Circled 4.0 Exponent */
+.hackodyssey-preloader .hop-title-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 0.45rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hackodyssey-preloader .hop-title-mask {
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem 0.05rem;
+}
+
+.hackodyssey-preloader .hop-title-word {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 5.8vw, 5.2rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95), 0 0 25px rgba(168, 85, 247, 0.35);
+  will-change: transform, opacity;
+}
+
+/* ODYSSEY wrapper with absolute-docked 4.0 Exponent Badge */
+.hackodyssey-preloader .hop-odyssey-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Circled 4.0 Exponent Badge wrapper — Absolute Positioned at Top Right Exponent */
+.hackodyssey-preloader .hop-badge-wrap {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 0.35rem;
+  margin-top: -0.2rem;
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 60;
+}
+
+/* Exponential Circled 4.0 Badge (Matching Website Hero Section Exactly) */
+.hackodyssey-preloader .hop-badge-exponent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(1.6rem, 2.2vw, 2.1rem);
+  height: clamp(1.6rem, 2.2vw, 2.1rem);
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  background-color: rgba(59, 7, 100, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 700;
+  font-size: clamp(0.58rem, 0.80vw, 0.75rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.55), inset 0 0 8px rgba(168, 85, 247, 0.35);
+  will-change: transform, opacity;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   HANDS ARCHITECTURE & BLENDING (PHASES 2 → 5)
+   ============================================================ */
+
+.hackodyssey-preloader .hop-hand-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+  z-index: 10;
+}
+
+.hackodyssey-preloader .hop-hand-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(540px, 46vw);
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  opacity: 0;
+  transform-origin: 0 0;
+}
+
+.hackodyssey-preloader .hop-hand-offset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Precise fingertip origin offsets */
+.hackodyssey-preloader .hop-hand-offset-a {
+  transform: translate(-99.6%, -97.46%);
+  mask-image: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 14%, rgba(0,0,0,1) 32%, rgba(0,0,0,1) 100%);
+  -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 14%, rgba(0,0,0,1) 32%, rgba(0,0,0,1) 100%);
+}
+
+.hackodyssey-preloader .hop-hand-offset-b {
+  transform: translate(-0.13%, -0.29%);
+  mask-image: linear-gradient(315deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 14%, rgba(0,0,0,1) 32%, rgba(0,0,0,1) 100%);
+  -webkit-mask-image: linear-gradient(315deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 14%, rgba(0,0,0,1) 32%, rgba(0,0,0,1) 100%);
+}
+
+/* Blended cinematic halftone texture */
+.hackodyssey-preloader .hop-hand-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: brightness(0.95) contrast(1.15) drop-shadow(0 0 16px rgba(168, 85, 247, 0.35));
+}
+
+/* ============================================================
+   INDEX FINGERTIP LIGHTS
+   ============================================================ */
+
+.hackodyssey-preloader .hop-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  z-index: 20;
+}
+
+.hackodyssey-preloader .hop-light-bloom {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.32) 0%,
+    rgba(126, 34, 206, 0.12) 45%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.hackodyssey-preloader .hop-light-halo {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(233, 213, 255, 0.8) 0%,
+    rgba(192, 132, 252, 0.35) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.hackodyssey-preloader .hop-light-core {
+  position: relative;
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 
+    0 0 4px 1px rgba(255, 255, 255, 0.95),
+    0 0 10px 2px rgba(216, 180, 254, 0.8),
+    0 0 22px 4px rgba(168, 85, 247, 0.5);
+  pointer-events: none;
+}
+
+/* ============================================================
+   TEMPORARY SKIP BUTTON (Landing to Hero Section)
+   ============================================================ */
+
+.hackodyssey-preloader .hop-skip-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.15rem;
+  background: rgba(18, 10, 28, 0.65);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 9999px;
+  color: #e9d5ff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 100;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.15);
+}
+
+.hackodyssey-preloader .hop-skip-btn:hover {
+  background: rgba(147, 51, 234, 0.28);
+  border-color: rgba(216, 180, 254, 0.8);
+  color: #ffffff;
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+}
+
+.hackodyssey-preloader .hop-skip-key {
+  display: inline-block;
+  padding: 0.15rem 0.35rem;
+  background: rgba(147, 51, 234, 0.25);
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  color: rgba(233, 213, 255, 0.85);
+}
+
+/* Responsive Layout Adjustments */
+@media (max-width: 768px) {
+  .hackodyssey-preloader .hop-hand-wrapper {
+    width: min(360px, 62vw);
+  }
+
+  .hackodyssey-preloader .hop-atmosphere {
+    width: 85vw;
+    height: 85vh;
+  }
+
+  .hackodyssey-preloader .hop-logo-container {
+    width: clamp(115px, 30vw, 160px);
+  }
+
+  .hackodyssey-preloader .hop-event-text-group {
+    margin-top: 1.1rem;
+  }
+
+  .hackodyssey-preloader .hop-title-wrap {
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+  }
+  
+  .hackodyssey-preloader .hop-title-word {
+    font-size: clamp(2.1rem, 8.5vw, 3.4rem);
+  }
+
+  .hackodyssey-preloader .hop-badge-exponent {
+    width: clamp(1.35rem, 4.5vw, 1.7rem);
+    height: clamp(1.35rem, 4.5vw, 1.7rem);
+    font-size: clamp(0.52rem, 1.8vw, 0.65rem);
+  }
+
+  .hackodyssey-preloader .hop-skip-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Prefers-reduced-motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hackodyssey-preloader .hop-atmosphere,
+  .hackodyssey-preloader .hop-particle,
+  .hackodyssey-preloader .hop-anticipation-glow,
+  .hackodyssey-preloader .hop-contact-flash,
+  .hackodyssey-preloader .hop-energy-pulse,
+  .hackodyssey-preloader .hop-contact-particle,
+  .hackodyssey-preloader .hop-central-core,
+  .hackodyssey-preloader .hop-converge-particle,
+  .hackodyssey-preloader .hop-logo-halo,
+  .hackodyssey-preloader .hop-logo-container,
+  .hackodyssey-preloader .hop-logo-sweep,
+  .hackodyssey-preloader .hop-presents-text,
+  .hackodyssey-preloader .hop-title-word,
+  .hackodyssey-preloader .hop-badge-exponent,
+  .hackodyssey-preloader .hop-hand-anchor,
+  .hackodyssey-preloader .hop-hand-wrapper,
+  .hackodyssey-preloader .hop-light,
+  .hackodyssey-preloader .hop-skip-btn {
+    transition: opacity 0.2s ease !important;
+    filter: none !important;
+  }
+}

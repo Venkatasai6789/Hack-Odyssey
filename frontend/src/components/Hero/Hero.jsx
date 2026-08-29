@@ -17,13 +17,13 @@ const Hero = () => {
 
     useGSAP(() => {
         // 1. Background gentle parallax scale on scroll
-        if (!isMobHero) {
-            gsap.to(".hero-section .hero-img", {
+        if (!isMobHero && heroRef.current) {
+            gsap.to(".hero-img", {
                 yPercent: -6,
                 scale: 1.12,
                 ease: "power1.inOut",
                 scrollTrigger: {
-                    trigger: ".hero-section",
+                    trigger: heroRef.current,
                     start: "top top",
                     end: "bottom top",
                     scrub: 1.5,

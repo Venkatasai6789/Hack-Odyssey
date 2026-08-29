@@ -13,20 +13,22 @@ const StickyCols = () => {
         gsap.registerPlugin(ScrollTrigger, SplitText);
 
         // 1️⃣ Split text lines once DOM ready
-        const textElements = document.querySelectorAll(".col-3 h1, .col-3 p");
-        textElements.forEach((element) => {
-            const split = new SplitText(element, { type: "lines", linesClass: "line" });
-            split.lines.forEach((line) => {
-                line.innerHTML = `<span>${line.textContent}</span>`;
+        document.fonts.ready.then(() => {
+            const textElements = document.querySelectorAll(".col-3 h1, .col-3 p");
+            textElements.forEach((element) => {
+                const split = new SplitText(element, { type: "lines", linesClass: "line" });
+                split.lines.forEach((line) => {
+                    line.innerHTML = `<span>${line.textContent}</span>`;
+                });
             });
+
+            // Refresh ScrollTrigger after split
+            ScrollTrigger.refresh();
+
+            // 2️⃣ Initial state
+            gsap.set(".col-3 .col-content-wrapper .line span", { yPercent: 0 });
+            gsap.set(".col-3 .col-content-wrapper-2 .line span", { yPercent: -125 });
         });
-
-        // Refresh ScrollTrigger after split
-        ScrollTrigger.refresh();
-
-        // 2️⃣ Initial state
-        gsap.set(".col-3 .col-content-wrapper .line span", { yPercent: 0 });
-        gsap.set(".col-3 .col-content-wrapper-2 .line span", { yPercent: -125 });
 
         // 3️⃣ Controlled phase logic using timeline (simpler and stable)
         const tl = gsap.timeline({

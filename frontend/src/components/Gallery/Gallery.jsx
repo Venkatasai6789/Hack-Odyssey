@@ -1,421 +1,303 @@
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './gallery.css';
-import { BsFillPlusCircleFill, BsXCircleFill } from "react-icons/bs";
+import React, { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "./gallery.css";
 
-import winner1 from '../../assets/winner1.jpg';
-import winner2 from '../../assets/winner2.jpg';
-import winner3 from '../../assets/winner3.jpg';
+// 5 Curated Hack Odyssey Landscape Event Images
+import gallery4 from "../../assets/gallery_4.jpg";
+import gallery5 from "../../assets/gallery_5.jpg";
+import gallery3 from "../../assets/gallery_3.jpg";
+import gallery1 from "../../assets/gallery_1.jpg";
+import gallery2 from "../../assets/gallery_2.jpeg";
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-const WINNERS_DATA = [
+const GALLERY_CARDS = [
     {
         id: 1,
-        rank: "01",
-        position: "Grand Champion · 1st Place",
-        prize: "₹50,000",
-        edition: "HACK ODYSSEY",
-        version: "3.0",
-        team: "Team NeuralPulse",
-        project: "Autonomous Bio-Telemetry & Emergency Triage AI",
-        university: "IIT Madras",
-        track: "AI & Healthcare Systems",
-        summary: "Engineered a sub-millisecond edge-AI diagnostic engine integrating real-time ECG synthesis with decentralized paramedic dispatch networks.",
-        image: winner1,
-        progress: 33,
-        accentColor: "#a855f7",
-        members: ["Aarav Sharma (ML Lead)", "Kavya Patel (Systems)", "Rohan Iyer (Edge IoT)"],
-        tech: ["PyTorch", "Rust", "WebAssembly", "FastAPI", "TensorRT"],
-        impact: "Reduced emergency response telemetry latency by 74% in simulated clinical trials."
+        img: gallery4,
+        rotate: -6,
+        baseTranslateY: 18,
+        scale: 0.94,
+        type: "outer",
     },
     {
         id: 2,
-        rank: "02",
-        position: "1st Runner Up · 2nd Place",
-        prize: "₹30,000",
-        edition: "HACK ODYSSEY",
-        version: "3.0",
-        team: "Team CipherZero",
-        project: "Zero-Knowledge Cross-Chain Identity Protocol",
-        university: "NIT Trichy",
-        track: "Web3 & Cryptography",
-        summary: "Pioneered zk-SNARK attestation delivering quantum-resistant decentralized multi-chain verification without exposing sensitive user credentials.",
-        image: winner2,
-        progress: 67,
-        accentColor: "#38bdf8",
-        members: ["Vikramaditya Nair (ZKP Cryptographer)", "Ananya Sen (Protocol Dev)", "Aditya Verma (Security)"],
-        tech: ["Circom", "Solidity", "Rust", "TypeScript", "Noir"],
-        impact: "Enabled trustless multi-chain credential verification with zero cryptographic data leaks."
+        img: gallery5,
+        rotate: -3,
+        baseTranslateY: -6,
+        scale: 0.97,
+        type: "inner",
     },
     {
         id: 3,
-        rank: "03",
-        position: "2nd Runner Up · 3rd Place",
-        prize: "₹20,000",
-        edition: "HACK ODYSSEY",
-        version: "3.0",
-        team: "Team GeoVision",
-        project: "Hyper-Spectral Geospatial AI for Climate Disaster Mitigation",
-        university: "VIT Vellore",
-        track: "Geospatial AI & ClimateTech",
-        summary: "Deployed lightweight satellite telemetry models delivering automated wildfire propagation forecasts and dynamic evacuation routing 6x faster.",
-        image: winner3,
-        progress: 100,
-        accentColor: "#fbbf24",
-        members: ["Sneha Reddy (Geospatial Lead)", "Tanmay Joshi (Computer Vision)", "Priya Sundaram (Backend)"],
-        tech: ["GDAL", "TensorFlow", "PostGIS", "React", "Docker"],
-        impact: "Simulated real-time evacuation pathways for over 120,000 inhabitants under critical conditions."
-    }
+        img: gallery3,
+        rotate: 0,
+        baseTranslateY: -28,
+        scale: 1.0,
+        type: "hero",
+    },
+    {
+        id: 4,
+        img: gallery1,
+        rotate: 3,
+        baseTranslateY: -6,
+        scale: 0.97,
+        type: "inner",
+    },
+    {
+        id: 5,
+        img: gallery2,
+        rotate: 6,
+        baseTranslateY: 18,
+        scale: 0.94,
+        type: "outer",
+    },
 ];
 
 const Gallery = () => {
-    const pageRef = useRef(null);
-    const [activeModal, setActiveModal] = useState(null);
+    const galleryRef = useRef(null);
+    const [hoveredCardId, setHoveredCardId] = useState(null);
+    const imageRefs = useRef({});
 
-    useEffect(() => {
-        const tl4 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".gallery-page4",
-                start: "10% 10%",
-                end: "220% 30%",
-                scrub: 1,
-                pin: true,
-            }
+    useGSAP(() => {
+        if (!galleryRef.current) return;
+
+        // Overlay emergence on top of pinned highlights video
+        gsap.set(galleryRef.current, {
+            marginTop: "-100vh",
         });
 
-        gsap.set(".gallery-topText, .gallery-bottomText", {
-            opacity: 1,
-            x: 0
-        });
+        // MatchMedia for responsive scroll narrative
+        const mm = gsap.matchMedia();
 
-        // Animation sequence:
-        // A: Fade marquee & expand Card 1 to full screen with 0 border radius
-        tl4.to(".gallery-box h3", {
-            opacity: 0,
-        }, 'a')
-            .to(".gallery-page4 .gallery-background", {
-                width: "100vw",
-                height: "100vh",
-                borderRadius: "0px",
-                y: 0,
-            }, 'a')
-            .to(".gallery-page4 .gallery-background img", {
-                transform: "scale(1)",
-            }, 'a')
-            .from(".gallery-background .gallery-topText, .gallery-background .gallery-bottomText", {
-                opacity: 0,
-                x: 40,
-            })
-            .to({}, { duration: 0.4 }, "+=0")
+        // ════════════ DESKTOP / TABLET TIMELINE ════════════
+        mm.add("(min-width: 768px)", () => {
+            const galleryTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: galleryRef.current,
+                    start: "top top",
+                    end: "+=2200",
+                    pin: true,
+                    scrub: 1.2,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                },
+            });
 
-            // B: Card 2 enters from bottom, replaces Card 1
-            .to("#gallery-second", {
-                transform: "translate(-50%, -50%)",
-            }, 'b')
-            .to("#gallery-second img", {
-                transform: "scale(1)",
-            }, 'b')
-            .to(".gallery-page4 .gallery-background", {
-                scale: 0.9,
-                opacity: 0,
-                y: -50
-            }, 'b')
-            .from("#gallery-second .gallery-topText, #gallery-second .gallery-bottomText", {
-                opacity: 0,
-                x: 40,
-            })
-            .to({}, { duration: 0.4 }, "+=0")
-
-            // C: Card 3 enters from bottom, replaces Card 2
-            .to("#gallery-third", {
-                transform: "translate(-50%, -50%)",
-            }, 'c')
-            .to("#gallery-third img", {
-                transform: "scale(1)",
-            }, 'c')
-            .to("#gallery-second", {
-                scale: 0.9,
-                opacity: 0,
-            }, 'c')
-            .from("#gallery-third .gallery-topText, #gallery-third .gallery-bottomText", {
-                opacity: 0,
-                x: 40,
-            })
-            .to({}, { duration: 0.4 }, "+=0");
-
-        return () => {
-            tl4.kill();
-        };
-    }, []);
-
-    // Repeating HACK ODYSSEY 3.0 marquee items
-    const generateMarqueeItems = (quantity = 6) => {
-        const items = [];
-        for (let i = 1; i <= quantity; i++) {
-            items.push(
-                <h3 key={i} style={{ "--index": i }} className="font-hero-bebas">
-                    <span className="tracking-tight uppercase">HACK ODYSSEY</span>
-                    <span className="gallery-badge-exponent-marquee">3.0</span>
-                </h3>
+            // PHASE 1: Cinematic Card Rise from Below
+            galleryTl.from(
+                ".gallery-card-item",
+                {
+                    yPercent: 240,
+                    opacity: 0,
+                    scale: 0.93,
+                    stagger: 0.12,
+                    duration: 1.2,
+                    ease: "power3.out",
+                },
+                0
             );
-        }
-        return items;
+
+            // PHASE 2: Settle & Foreground Focal Composition
+
+            // PHASE 3: Coordinated Kinetic Parallax Typography Shift
+            galleryTl
+                .to(
+                    ".ft-anim",
+                    {
+                        xPercent: 100,
+                        yPercent: -100,
+                        ease: "none",
+                        duration: 1.8,
+                    },
+                    "<+0.2"
+                )
+                .to(
+                    ".st-anim",
+                    {
+                        xPercent: 55,
+                        yPercent: -100,
+                        ease: "none",
+                        duration: 1.8,
+                    },
+                    "<"
+                )
+                .to(
+                    ".tt-anim",
+                    {
+                        xPercent: -80,
+                        yPercent: -100,
+                        ease: "none",
+                        duration: 1.8,
+                    },
+                    "<"
+                );
+        });
+
+        // ════════════ MOBILE TIMELINE ════════════
+        mm.add("(max-width: 767px)", () => {
+            const mobTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: galleryRef.current,
+                    start: "top top",
+                    end: "+=1400",
+                    pin: true,
+                    scrub: 1.2,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            mobTl.from(
+                ".gallery-card-item",
+                {
+                    yPercent: 220,
+                    opacity: 0,
+                    scale: 0.92,
+                    stagger: 0.1,
+                    duration: 1.0,
+                    ease: "power3.out",
+                },
+                0
+            );
+
+            mobTl
+                .to(
+                    ".ft-anim",
+                    {
+                        xPercent: 40,
+                        yPercent: -60,
+                        ease: "none",
+                    },
+                    "<+0.15"
+                )
+                .to(
+                    ".st-anim",
+                    {
+                        xPercent: 25,
+                        yPercent: -60,
+                        ease: "none",
+                    },
+                    "<"
+                )
+                .to(
+                    ".tt-anim",
+                    {
+                        xPercent: -40,
+                        yPercent: -60,
+                        ease: "none",
+                    },
+                    "<"
+                );
+        });
+
+        return () => mm.revert();
+    }, { scope: galleryRef });
+
+    // ════════════ INTERACTIVE MOUSE-FOLLOW & LANDSCAPE EXPLORATION ════════════
+    const handleCardMouseEnter = (id) => {
+        setHoveredCardId(id);
     };
 
-    const toggleModal = (winner) => {
-        setActiveModal(activeModal?.id === winner.id ? null : winner);
+    const handleCardMouseMove = (e, id) => {
+        const imgEl = imageRefs.current[id];
+        if (!imgEl) return;
+
+        const cardEl = e.currentTarget;
+        const rect = cardEl.getBoundingClientRect();
+        const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1; // -1 to 1
+        const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1; // -1 to 1
+
+        gsap.to(imgEl, {
+            x: normX * 12,
+            y: normY * 8,
+            scale: 1.08,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: "auto",
+        });
+    };
+
+    const handleCardMouseLeave = (id) => {
+        setHoveredCardId(null);
+        const imgEl = imageRefs.current[id];
+        if (imgEl) {
+            gsap.to(imgEl, {
+                x: 0,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "power3.out",
+                overwrite: "auto",
+            });
+        }
     };
 
     return (
-        <section className="gallery-page4" ref={pageRef}>
-            {/* Ambient Nebula Radial Violet Lighting matching Prize Pool */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#25104A]/30 rounded-full blur-[170px] pointer-events-none z-0" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[#7C3CFF]/14 rounded-full blur-[150px] pointer-events-none z-0" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#25104A]/30 rounded-full blur-[170px] pointer-events-none z-0" />
+        <section
+            ref={galleryRef}
+            className="gallery-section relative w-full bg-[#030206] text-[#f4efe7] overflow-hidden select-none z-10"
+        >
+            {/* Ambient Lighting (No Gradients) */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#25104A] opacity-30 rounded-full blur-[170px] pointer-events-none z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[#7C3CFF] opacity-15 rounded-full blur-[160px] pointer-events-none z-0" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#25104A] opacity-30 rounded-full blur-[170px] pointer-events-none z-0" />
 
-            {/* Side-Scrolling Background Marquee Text */}
-            <div className="gallery-slider">
-                <div
-                    className="gallery-box"
-                    style={{ "--time": "30s", "--quantity": 6 }}
-                >
-                    {generateMarqueeItems(6)}
+            <div className="relative w-full h-screen flex items-center justify-center">
+                {/* ════════════ OVERSIZED BACKGROUND TYPOGRAPHY (Z-10) ════════════ */}
+                <div className="all-title absolute inset-0 size-full flex flex-col items-center justify-center pointer-events-none z-10 select-none">
+                    <h1 className="font-hero-bebas text-white first-title ft-anim">
+                        MOMENTS
+                    </h1>
+                    <h1 className="font-hero-bebas text-[#a855f7] sec-title st-anim">
+                        DEFINING
+                    </h1>
+                    <h1 className="font-hero-bebas text-[#f4efe7] third-title tt-anim">
+                        ODYSSEY
+                    </h1>
                 </div>
-            </div>
 
-            {/* ════════════════════ CARD 1: 1ST PLACE WINNER ════════════════════ */}
-            <div className="gallery-background">
-                <img src={WINNERS_DATA[0].image} alt={WINNERS_DATA[0].team} />
-                <div className="gallery-vignette-overlay" />
+                {/* ════════════ PINNED FANNED GALLERY RIBBON (Z-20 & Z-30) ════════════ */}
+                <div className="gallery-pin-container z-20">
+                    {GALLERY_CARDS.map((card) => {
+                        const isHovered = hoveredCardId === card.id;
+                        const isHero = card.type === "hero";
 
-                {/* Top-Left Corner: HACK ODYSSEY 3.0 + Position */}
-                <div className="gallery-topText">
-                    <div className="flex flex-col items-start text-left select-none">
-                        <div className="relative inline-flex items-start">
-                            <h2 className="gallery-main-title font-hero-bebas">
-                                {WINNERS_DATA[0].edition}
-                            </h2>
-                            <span 
-                                className="gallery-badge-exponent"
-                                title="Version 3.0"
+                        return (
+                            <div
+                                key={card.id}
+                                className="gallery-card-item"
+                                style={{
+                                    zIndex: isHovered ? 40 : isHero ? 30 : card.type === "inner" ? 20 : 10,
+                                }}
                             >
-                                {WINNERS_DATA[0].version}
-                            </span>
-                        </div>
-                        <p className="text-[#d8b4fe] text-xs sm:text-sm font-mono font-medium tracking-wider uppercase mt-1 drop-shadow">
-                            {WINNERS_DATA[0].position} &middot; {WINNERS_DATA[0].prize}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Bottom Row: Progress (Left) and + Description (Right) */}
-                <div className="gallery-bottomText">
-                    {/* Bottom-Left: Clean Minimal Progress Indicator */}
-                    <div className="gallery-progress-container select-none">
-                        <div className="gallery-progress-bar">
-                            <div className="gallery-progress-line" style={{ width: `${WINNERS_DATA[0].progress}%` }} />
-                        </div>
-                    </div>
-
-                    {/* Bottom-Right: + Button + Clean Condensed Details */}
-                    <div className="flex items-center gap-3.5 sm:gap-4 max-w-xl text-right justify-end select-none">
-                        <div className="flex flex-col items-end">
-                            <h3 className="text-white font-semibold text-xs sm:text-sm md:text-base leading-snug drop-shadow">
-                                <span className="text-[#d8b4fe] font-bold">{WINNERS_DATA[0].team}</span>
-                                <span className="text-white/60 mx-1.5">&middot;</span>
-                                <span className="text-white/90">{WINNERS_DATA[0].university}</span>
-                            </h3>
-                            <p className="text-[#cbd5e1] font-normal text-[11px] sm:text-xs leading-relaxed mt-0.5 drop-shadow line-clamp-1 sm:line-clamp-2">
-                                {WINNERS_DATA[0].project}
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={() => toggleModal(WINNERS_DATA[0])}
-                            className="gallery-plus-btn group cursor-pointer shrink-0"
-                            title="View Project Specifications"
-                            aria-label="View Project Specifications"
-                        >
-                            <BsFillPlusCircleFill className="w-7 h-7 sm:w-8 sm:h-8 text-[#f4efe7] group-hover:text-[#a855f7] transition-all transform group-hover:scale-110" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* ════════════════════ CARD 2: 2ND PLACE WINNER ════════════════════ */}
-            <div id="gallery-second" className="gallery-background2">
-                <img src={WINNERS_DATA[1].image} alt={WINNERS_DATA[1].team} />
-                <div className="gallery-vignette-overlay" />
-
-                {/* Top-Left Corner */}
-                <div className="gallery-topText">
-                    <div className="flex flex-col items-start text-left select-none">
-                        <div className="relative inline-flex items-start">
-                            <h2 className="gallery-main-title font-hero-bebas">
-                                {WINNERS_DATA[1].edition}
-                            </h2>
-                            <span 
-                                className="gallery-badge-exponent"
-                                title="Version 3.0"
-                            >
-                                {WINNERS_DATA[1].version}
-                            </span>
-                        </div>
-                        <p className="text-[#bae6fd] text-xs sm:text-sm font-mono font-medium tracking-wider uppercase mt-1 drop-shadow">
-                            {WINNERS_DATA[1].position} &middot; {WINNERS_DATA[1].prize}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Bottom Row */}
-                <div className="gallery-bottomText">
-                    <div className="gallery-progress-container select-none">
-                        <div className="gallery-progress-bar">
-                            <div className="gallery-progress-line" style={{ width: `${WINNERS_DATA[1].progress}%` }} />
-                        </div>
-                    </div>
-
-                    <div className="flex items-center gap-3.5 sm:gap-4 max-w-xl text-right justify-end select-none">
-                        <div className="flex flex-col items-end">
-                            <h3 className="text-white font-semibold text-xs sm:text-sm md:text-base leading-snug drop-shadow">
-                                <span className="text-[#7dd3fc] font-bold">{WINNERS_DATA[1].team}</span>
-                                <span className="text-white/60 mx-1.5">&middot;</span>
-                                <span className="text-white/90">{WINNERS_DATA[1].university}</span>
-                            </h3>
-                            <p className="text-[#cbd5e1] font-normal text-[11px] sm:text-xs leading-relaxed mt-0.5 drop-shadow line-clamp-1 sm:line-clamp-2">
-                                {WINNERS_DATA[1].project}
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={() => toggleModal(WINNERS_DATA[1])}
-                            className="gallery-plus-btn group cursor-pointer shrink-0"
-                            title="View Project Specifications"
-                            aria-label="View Project Specifications"
-                        >
-                            <BsFillPlusCircleFill className="w-7 h-7 sm:w-8 sm:h-8 text-[#f4efe7] group-hover:text-[#38bdf8] transition-all transform group-hover:scale-110" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* ════════════════════ CARD 3: 3RD PLACE WINNER ════════════════════ */}
-            <div id="gallery-third" className="gallery-background2">
-                <img src={WINNERS_DATA[2].image} alt={WINNERS_DATA[2].team} />
-                <div className="gallery-vignette-overlay" />
-
-                {/* Top-Left Corner */}
-                <div className="gallery-topText">
-                    <div className="flex flex-col items-start text-left select-none">
-                        <div className="relative inline-flex items-start">
-                            <h2 className="gallery-main-title font-hero-bebas">
-                                {WINNERS_DATA[2].edition}
-                            </h2>
-                            <span 
-                                className="gallery-badge-exponent"
-                                title="Version 3.0"
-                            >
-                                {WINNERS_DATA[2].version}
-                            </span>
-                        </div>
-                        <p className="text-[#fde68a] text-xs sm:text-sm font-mono font-medium tracking-wider uppercase mt-1 drop-shadow">
-                            {WINNERS_DATA[2].position} &middot; {WINNERS_DATA[2].prize}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Bottom Row */}
-                <div className="gallery-bottomText">
-                    <div className="gallery-progress-container select-none">
-                        <div className="gallery-progress-bar">
-                            <div className="gallery-progress-line" style={{ width: `${WINNERS_DATA[2].progress}%` }} />
-                        </div>
-                    </div>
-
-                    <div className="flex items-center gap-3.5 sm:gap-4 max-w-xl text-right justify-end select-none">
-                        <div className="flex flex-col items-end">
-                            <h3 className="text-white font-semibold text-xs sm:text-sm md:text-base leading-snug drop-shadow">
-                                <span className="text-[#fde047] font-bold">{WINNERS_DATA[2].team}</span>
-                                <span className="text-white/60 mx-1.5">&middot;</span>
-                                <span className="text-white/90">{WINNERS_DATA[2].university}</span>
-                            </h3>
-                            <p className="text-[#cbd5e1] font-normal text-[11px] sm:text-xs leading-relaxed mt-0.5 drop-shadow line-clamp-1 sm:line-clamp-2">
-                                {WINNERS_DATA[2].project}
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={() => toggleModal(WINNERS_DATA[2])}
-                            className="gallery-plus-btn group cursor-pointer shrink-0"
-                            title="View Project Specifications"
-                            aria-label="View Project Specifications"
-                        >
-                            <BsFillPlusCircleFill className="w-7 h-7 sm:w-8 sm:h-8 text-[#f4efe7] group-hover:text-[#fbbf24] transition-all transform group-hover:scale-110" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* ════════════════════ INTERACTIVE HUD MODAL ════════════════════ */}
-            {activeModal && (
-                <div className="gallery-modal-backdrop" onClick={() => setActiveModal(null)}>
-                    <div className="gallery-modal-card" onClick={(e) => e.stopPropagation()}>
-                        <div className="flex justify-between items-start border-b border-white/10 pb-3 mb-3">
-                            <div>
-                                <span className="text-[11px] font-mono text-[#a855f7] font-bold uppercase tracking-wider">
-                                    {activeModal.position} &middot; {activeModal.prize}
-                                </span>
-                                <h3 className="text-lg sm:text-xl font-bold text-white mt-0.5">
-                                    {activeModal.team}
-                                </h3>
-                                <p className="text-xs text-[#cbd5e1]">
-                                    {activeModal.university}
-                                </p>
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => setActiveModal(null)}
-                                className="text-white/60 hover:text-white transition-colors cursor-pointer"
-                            >
-                                <BsXCircleFill className="w-5 h-5" />
-                            </button>
-                        </div>
-
-                        <div className="space-y-2.5 text-xs text-[#cbd5e1]">
-                            <div>
-                                <span className="text-[10px] font-mono text-[#a855f7] uppercase tracking-wider block mb-0.5">
-                                    PROJECT
-                                </span>
-                                <p className="text-white font-medium">{activeModal.project}</p>
-                                <p className="text-white/70 text-[11px] mt-0.5 leading-relaxed">{activeModal.summary}</p>
-                            </div>
-
-                            <div className="bg-white/5 p-2.5 rounded-lg border border-white/5">
-                                <span className="text-[10px] font-mono text-amber-400 uppercase tracking-wider block mb-0.5">
-                                    IMPACT & HIGHLIGHT
-                                </span>
-                                <p className="text-[#f4efe7] text-[11px] italic">{activeModal.impact}</p>
-                            </div>
-
-                            <div>
-                                <span className="text-[10px] font-mono text-[#a855f7] uppercase tracking-wider block mb-1">
-                                    TECH STACK
-                                </span>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {activeModal.tech.map((t, idx) => (
-                                        <span key={idx} className="px-2 py-0.5 rounded bg-white/10 text-white text-[10px] font-mono border border-white/10">
-                                            {t}
-                                        </span>
-                                    ))}
+                                <div
+                                    className={`gallery-landscape-card card-${card.type} ${
+                                        isHovered ? "card-hovered" : ""
+                                    }`}
+                                    style={{
+                                        transform: `rotate(${card.rotate}deg) translateY(${card.baseTranslateY}px) scale(${
+                                            isHovered ? 1.03 : card.scale
+                                        })`,
+                                    }}
+                                    onMouseEnter={() => handleCardMouseEnter(card.id)}
+                                    onMouseMove={(e) => handleCardMouseMove(e, card.id)}
+                                    onMouseLeave={() => handleCardMouseLeave(card.id)}
+                                >
+                                    <img
+                                        ref={(el) => (imageRefs.current[card.id] = el)}
+                                        src={card.img}
+                                        alt={`Hack Odyssey Moment ${card.id}`}
+                                        className="w-full h-full object-cover select-none pointer-events-none will-change-transform opacity-100"
+                                    />
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        );
+                    })}
                 </div>
-            )}
+            </div>
         </section>
     );
 };

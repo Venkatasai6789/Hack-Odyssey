@@ -178,7 +178,7 @@ const WavyImageCard = ({
         let targetMouse = { x: 0.5, y: 0.5 };
         let currentMouse = { x: 0.5, y: 0.5 };
         let animId;
-        const clock = new THREE.Clock();
+        let lastTime = performance.now();
 
         const onPointerEnter = () => {
             targetHover = 1.0;
@@ -210,9 +210,10 @@ const WavyImageCard = ({
         });
         resizeObserver.observe(container);
 
-        const animate = () => {
+        const animate = (time = performance.now()) => {
             animId = requestAnimationFrame(animate);
-            const delta = clock.getDelta();
+            const delta = Math.min((time - lastTime) / 1000, 0.1);
+            lastTime = time;
             uniforms.uTime.value += delta;
 
             currentHover += (targetHover - currentHover) * 0.08;

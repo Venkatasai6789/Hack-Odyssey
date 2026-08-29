@@ -11,7 +11,7 @@ import mrsKrithigaImg from '../../assets/mrs_n_krithiga.jpeg';
 import msReshiniImg from '../../assets/ms_reshini.jpg';
 import shaikThahaImg from '../../assets/shaik_thaha.jpg';
 import hariniAedullaImg from '../../assets/harini_aedulla.jpg';
-import umeshChandraImg from '../../assets/umesh_chandra.jpg';
+import umeshChandraImg from '../../assets/umesh_chandra.jpeg';
 import karliTejasreeImg from '../../assets/karli_tejasree.jpg';
 
 // Studio Secondary Wavy Artworks
@@ -40,7 +40,7 @@ const Coordinators = () => {
             duration: 0.8,
             ease: 'power3.out',
             scrollTrigger: {
-                trigger: '#page3',
+                trigger: pageRef.current,
                 start: 'top 78%',
             }
         });
@@ -55,7 +55,7 @@ const Coordinators = () => {
             duration: 1.0,
             ease: 'power4.out',
             scrollTrigger: {
-                trigger: '#page3',
+                trigger: pageRef.current,
                 start: 'top 74%',
             }
         });
@@ -69,7 +69,7 @@ const Coordinators = () => {
                 duration: 1.2,
                 ease: 'power3.out',
                 scrollTrigger: {
-                    trigger: '#page3',
+                    trigger: pageRef.current,
                     start: 'top 70%',
                 }
             }

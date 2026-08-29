@@ -87,7 +87,7 @@ const Activities = () => {
             <p className='text-[.7rem] font-bold text-[#eae5dd] activities-subtitle'>Ready for an advanture?</p>
             <div className="lg:mt-10 mt-7 activities-part origin-bottom">
                 {activitiesLines.map((line, index) => (
-                    <h1 key={index} className={`activities-heading text-[#f4efe7] lg:text-[9.5rem] text-[3rem] leading-[0.9]`} font-medium tracking-tighter>
+                    <h1 key={index} className={`activities-heading text-[#f4efe7] lg:text-[9.5rem] text-[3rem] leading-[0.9] font-medium tracking-tighter`}>
                         <span className={`activities-title-break ${index == 1 ? "lg:pb-3 pb-2" : ""}`}>
                             {line}
                             <span className={`activities-title-clip ${index == 1 ? "lg:pb-3 pb-2" : ""}`}>

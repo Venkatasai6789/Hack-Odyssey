@@ -1,35 +1,203 @@
-.footer-title {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-    z-index: 2;
-    overflow: hidden;
+/* ==========================================================================
+   HACK ODYSSEY 4.0 — AWWWARDS-WINNING CONTACT & FOOTER STYLES
+   ========================================================================== */
+
+/* Main Footer Container */
+.hack-footer-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #030206;
+  background-image: radial-gradient(circle at 50% 30%, #171026 0%, #080510 50%, #030206 100%);
+  color: #f4efe7;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid rgba(168, 85, 247, 0.15);
 }
 
-.footer-title h1 {
-    position: relative;
-    line-height: 1;
-    color: #f4efe7;
+/* Atmospheric Nebula Lighting (Matches Hero, PrizePool & Winners) */
+.footer-ambient-glow {
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(124, 60, 255, 0.12) 0%, rgba(168, 85, 247, 0.05) 45%, transparent 70%);
+  filter: blur(150px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.ftChar {
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
+/* Bracketed Index Menu Typography */
+.footer-bracket-menu a {
+  position: relative;
+  display: inline-block;
+  color: #cbd5e1;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.ftChar>span {
-    display: inline-block;
-    will-change: transform;
+.footer-bracket-menu a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
 }
 
-/* Specific styling for the ® symbol */
-.footer-title h1 sub.ftChar {
-    /* font-size: 0.5em; */
-    /* Make ® smaller */
-    vertical-align: super;
-    bottom: 0;
+.footer-bracket-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #a855f7;
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.footer-bracket-menu a:hover::after {
+  width: 100%;
+}
+
+/* Signature Capsule / Pill CTA Button (Matches Hero Section CTA) */
+.footer-cta-pill {
+  background-color: #f4efe7;
+  color: #181717;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 25px rgba(244, 239, 231, 0.25);
+}
+
+.footer-cta-pill:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 35px rgba(244, 239, 231, 0.5);
+}
+
+.footer-cta-pill .cta-arrow-circle {
+  background-color: #181717;
+  color: #f4efe7;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s;
+}
+
+.footer-cta-pill:hover .cta-arrow-circle {
+  transform: rotate(45deg) scale(1.08);
+  background-color: #030206;
+  color: #ffffff;
+}
+
+/* Center Mega Brutalist Typography (Matching Hero Bebas Neue) */
+.footer-mega-typography-wrap {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  text-align: center;
+  user-select: none;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-mega-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(3.8rem, 14vw, 16.5rem);
+  line-height: 0.84;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  text-shadow: 0 15px 45px rgba(0, 0, 0, 0.95);
+  margin: 0 auto;
+}
+
+/* Circled Exponential 4.0 Badge (Direct Hero & Winners DNA) */
+.footer-badge-exponent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2rem, 5.5vw, 6rem);
+  height: clamp(2rem, 5.5vw, 6rem);
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+  font-family: 'Inter', monospace, sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1.8vw, 1.7rem);
+  margin-top: -0.2em;
+  margin-left: 0.2em;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.55);
+  backdrop-filter: blur(10px);
+  background-color: rgba(37, 16, 74, 0.6);
+  user-select: none;
+  flex-shrink: 0;
+  vertical-align: top;
+}
+
+/* Colophon Link Styles */
+.colophon-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Inter', monospace, sans-serif;
+  color: #cbd5e1;
+  transition: all 0.25s ease;
+}
+
+.colophon-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: #a855f7;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.colophon-link:hover {
+  color: #ffffff;
+}
+
+.colophon-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.colophon-link-social:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+}
+
+/* Responsive Scaling */
+@media (max-width: 1024px) {
+  .footer-mega-title {
+    font-size: clamp(3rem, 13.5vw, 11rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .hack-footer-section {
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .footer-mega-title {
+    font-size: clamp(2.4rem, 12.5vw, 5.5rem);
+  }
+  
+  .footer-bracket-menu {
+    border-left: 1.5px solid rgba(168, 85, 247, 0.4);
+    padding-left: 1rem;
+  }
 }

@@ -19,15 +19,16 @@ const VideoPin = () => {
                 scrollTrigger: {
                     trigger: ".video-wrapper",
                     start: "top top",
-                    end: "+=2200px",
-                    scrub: 1.2,
+                    end: "+=2000px",
+                    scrub: 1.5,
                     pin: true,
+                    anticipatePin: 1,
                 }
             });
 
             vpTl.fromTo(
                 ".video-box",
-                { clipPath: "circle(100px at 50% 50%)" },
+                { clipPath: "circle(120px at 50% 50%)" },
                 {
                     clipPath: "circle(120% at 50% 50%)",
                     ease: "power1.inOut",
@@ -38,15 +39,16 @@ const VideoPin = () => {
                 scrollTrigger: {
                     trigger: ".vd-pin",
                     start: "top top",
-                    end: "+=120%",
-                    scrub: 1.2,
+                    end: "+=1200px",
+                    scrub: 1.5,
                     pin: true,
+                    anticipatePin: 1,
                 }
             });
 
             vpMobTl.fromTo(
                 ".video-box",
-                { clipPath: "circle(80px at 50% 50%)" },
+                { clipPath: "circle(95px at 50% 50%)" },
                 {
                     clipPath: "circle(120% at 50% 50%)",
                     ease: "power1.inOut",
@@ -69,12 +71,8 @@ const VideoPin = () => {
 
     return (
         <div className="h-screen w-full overflow-hidden relative bg-[#030206] flex items-center justify-center">
-            {/* Ambient Violet Nebula Glow matching Hack Odyssey */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#7C3CFF]/15 rounded-full blur-[160px] pointer-events-none z-0" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-[#25104A]/30 rounded-full blur-[140px] pointer-events-none z-0" />
-
             {/* Expanding Video Container with Circular Clip-Path */}
-            <div className="relative w-full h-full video-box overflow-hidden z-10">
+            <div className="relative w-full h-full video-box overflow-hidden z-10 flex items-center justify-center will-change-transform">
                 <video
                     ref={videoRef}
                     src={pinVideo}
@@ -85,42 +83,103 @@ const VideoPin = () => {
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-full object-cover"
                 />
                 
-                {/* Cinematic Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#030206]/60 via-transparent to-[#030206]/80 pointer-events-none" />
-            </div>
+                {/* Subtle Cinematic Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#030206]/40 via-transparent to-[#030206]/60 pointer-events-none" />
 
-            {/* Concentric Play Controller HUD (Concentric SVG Text Ring + Glassmorphism Play Button) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none flex items-center justify-center">
-                {/* Concentric Rotating SVG Circular Text Ring */}
-                <div className="spin-circle-container w-[230px] h-[230px] sm:w-[270px] sm:h-[270px] md:w-[310px] md:h-[310px] pointer-events-none select-none flex items-center justify-center">
-                    <svg viewBox="0 0 300 300" className="w-full h-full overflow-visible">
+                {/* Concentric Rotating SVG Circular Ring with Dedicated Segment Arcs & Exponent 3.0 Badges */}
+                <div className="spin-circle-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[185px] h-[185px] sm:w-[205px] sm:h-[205px] md:w-[220px] md:h-[220px] pointer-events-none select-none z-20 flex items-center justify-center">
+                    <svg viewBox="0 0 200 200" className="w-full h-full overflow-visible">
                         <defs>
+                            {/* Arc 1: Top-Right (15° to 75°) for HACK ODYSSEY */}
                             <path
-                                id="circlePathOdyssey"
-                                d="M 150, 150 m -110, 0 a 110,110 0 1,1 220,0 a 110,110 0 1,1 -220,0"
+                                id="arcHack1"
+                                d="M 119.41, 27.56 A 75,75 0 0,1 172.44, 80.59"
+                                fill="none"
+                            />
+                            {/* Arc 2: Bottom-Right (102° to 168°) for HIGHLIGHTS */}
+                            <path
+                                id="arcHigh1"
+                                d="M 173.36, 115.59 A 75,75 0 0,1 115.59, 173.36"
+                                fill="none"
+                            />
+                            {/* Arc 3: Bottom-Left (195° to 255°) for HACK ODYSSEY */}
+                            <path
+                                id="arcHack2"
+                                d="M 80.59, 172.44 A 75,75 0 0,1 27.56, 119.41"
+                                fill="none"
+                            />
+                            {/* Arc 4: Top-Left (282° to 348°) for HIGHLIGHTS */}
+                            <path
+                                id="arcHigh2"
+                                d="M 26.64, 84.41 A 75,75 0 0,1 84.41, 26.64"
                                 fill="none"
                             />
                         </defs>
-                        <text className="text-[13.5px] sm:text-[14.5px] font-mono font-bold uppercase tracking-[0.24em] fill-[#d8b4fe] drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]">
-                            <textPath href="#circlePathOdyssey" startOffset="0%">
-                                • HACK ODYSSEY 3.0 • WATCH AFTERMOVIE • PLAY HIGHLIGHTS •
+
+                        {/* Top Dot at 0° */}
+                        <circle cx="100" cy="25" r="1.8" fill="#f4efe7" opacity="0.9" />
+
+                        {/* 1. HACK ODYSSEY on Arc 1 */}
+                        <text className="text-[8.5px] font-mono font-bold tracking-[0.18em] fill-[#f4efe7]">
+                            <textPath href="#arcHack1" startOffset="50%" textAnchor="middle">
+                                HACK ODYSSEY
+                            </textPath>
+                        </text>
+
+                        {/* 2. Circled Exponent Badge 1 at ~88° */}
+                        <g transform="translate(174.5, 97.5) rotate(88)">
+                            <circle cx="0" cy="0" r="8.5" stroke="rgba(244, 239, 231, 0.9)" strokeWidth="1.2" fill="#030206" />
+                            <text x="0" y="2.8" textAnchor="middle" fontSize="6.5" fontFamily="'Inter', monospace" fontWeight="bold" fill="#f4efe7">
+                                3.0
+                            </text>
+                        </g>
+
+                        {/* 3. HIGHLIGHTS on Arc 2 */}
+                        <text className="text-[8.5px] font-mono font-bold tracking-[0.18em] fill-[#f4efe7]">
+                            <textPath href="#arcHigh1" startOffset="50%" textAnchor="middle">
+                                HIGHLIGHTS
+                            </textPath>
+                        </text>
+
+                        {/* Bottom Dot at 180° */}
+                        <circle cx="100" cy="175" r="1.8" fill="#f4efe7" opacity="0.9" />
+
+                        {/* 4. HACK ODYSSEY on Arc 3 */}
+                        <text className="text-[8.5px] font-mono font-bold tracking-[0.18em] fill-[#f4efe7]">
+                            <textPath href="#arcHack2" startOffset="50%" textAnchor="middle">
+                                HACK ODYSSEY
+                            </textPath>
+                        </text>
+
+                        {/* 5. Circled Exponent Badge 2 at ~268° */}
+                        <g transform="translate(25.5, 102.5) rotate(268)">
+                            <circle cx="0" cy="0" r="8.5" stroke="rgba(244, 239, 231, 0.9)" strokeWidth="1.2" fill="#030206" />
+                            <text x="0" y="2.8" textAnchor="middle" fontSize="6.5" fontFamily="'Inter', monospace" fontWeight="bold" fill="#f4efe7">
+                                3.0
+                            </text>
+                        </g>
+
+                        {/* 6. HIGHLIGHTS on Arc 4 */}
+                        <text className="text-[8.5px] font-mono font-bold tracking-[0.18em] fill-[#f4efe7]">
+                            <textPath href="#arcHigh2" startOffset="50%" textAnchor="middle">
+                                HIGHLIGHTS
                             </textPath>
                         </text>
                     </svg>
                 </div>
 
-                {/* Central Glassmorphism Interactive Play / Pause Button */}
+                {/* Refined Minimalist Frosted Glass Play / Pause Button (No Muddy Glows) */}
                 <button
                     type="button"
                     onClick={handleTogglePlay}
-                    className="pointer-events-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-2xl border border-purple-400/40 hover:border-purple-400 shadow-[0_0_35px_rgba(168,85,247,0.45)] flex items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-110 group focus:outline-none focus:ring-2 focus:ring-purple-400/50"
-                    title={isPlaying ? "Pause Aftermovie" : "Play Aftermovie"}
-                    aria-label={isPlaying ? "Pause Aftermovie" : "Play Aftermovie"}
+                    className="pointer-events-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 backdrop-blur-xl border border-white/25 hover:border-white/50 text-white shadow-2xl flex items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 group focus:outline-none"
+                    title={isPlaying ? "Pause Highlights" : "Play Highlights"}
+                    aria-label={isPlaying ? "Pause Highlights" : "Play Highlights"}
                 >
                     {isPlaying ? (
-                        <FaPause className="w-5 h-5 sm:w-6 sm:h-6 text-[#d8b4fe] group-hover:text-white transition-colors" />
+                        <FaPause className="w-4 h-4 sm:w-5 sm:h-5 text-white/90 group-hover:text-white transition-colors" />
                     ) : (
-                        <FaPlay className="w-5 h-5 sm:w-6 sm:h-6 ml-1 text-[#d8b4fe] group-hover:text-white transition-colors" />
+                        <FaPlay className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 text-white/90 group-hover:text-white transition-colors" />
                     )}
                 </button>
             </div>
